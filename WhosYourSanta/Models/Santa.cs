@@ -9,7 +9,7 @@ namespace WhosYourSanta.Models
     public class Santa : IUser
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; protected set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }

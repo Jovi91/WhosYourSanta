@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,9 @@ namespace WhosYourSanta
         {
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("WhosYourSantaDb")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
         }
 
@@ -48,7 +52,9 @@ namespace WhosYourSanta
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
