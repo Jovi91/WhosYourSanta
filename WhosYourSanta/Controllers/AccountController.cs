@@ -21,6 +21,40 @@ namespace WhosYourSanta.Controllers
         public SignInManager<IdentityUser> SignInManager { get; }
 
         [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+                if(result.Succeeded)
+                {
+                   return  RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Model Attempt");
+            }
+
+            return View(model);
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+           await SignInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
