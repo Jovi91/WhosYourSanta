@@ -32,6 +32,8 @@ namespace WhosYourSanta
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
+
+            services.AddScoped<ILotteryRepository, MockLotteryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
