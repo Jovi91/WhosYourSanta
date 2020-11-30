@@ -35,7 +35,7 @@ namespace WhosYourSanta.Controllers
 
                 if(result.Succeeded)
                 {
-                   return  RedirectToAction("Main", "Home");
+                    return  RedirectToAction("Main", "Home");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Model Attempt");

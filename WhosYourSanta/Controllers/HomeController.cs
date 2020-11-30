@@ -15,11 +15,13 @@ namespace WhosYourSanta.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public UserManager<IdentityUser> UserManager { get; }
+        public ILotteryRepository LotteryRepository { get; }
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository)
         {
             _logger = logger;
             UserManager = userManager;
+            LotteryRepository = lotteryRepository;
         }
 
 
@@ -30,26 +32,11 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Main()
+        public IActionResult Main()
         {
-            Lottery lot = new Lottery()
-            {
-                Name = "Crazy People",
-                Admin = await UserManager.GetUserAsync(User),
-                Santas = {new Santa()
-                {
-                    Name="Bob",
-                    Email="aw@wp.pl"
-               } }
+            var userId = UserManager.GetUserId(User);
 
-            };
-
-            List<Lottery> lotteries = new List<Lottery>();
-            lotteries.Add(lot);
-            //MainViewModel model = new MainViewModel();
-            //model.MyLotteries.Add(lot);
-
-            return View(lotteries);
+            return View(LotteryRepository.GetLotteries(userId));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

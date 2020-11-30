@@ -8,6 +8,7 @@ namespace WhosYourSanta.ViewModel
 {
     public class LoginViewModel
     {
+        public string Id { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }

@@ -8,17 +8,23 @@ namespace WhosYourSanta.Models
 {
     public class MockLotteryRepository: ILotteryRepository
     {
+        public AppDbContext Context { get; }
+        
         List<IdentityUser> users;
-        IdentityUser jowi = new IdentityUser() { Email = "jowi@wp.pl", UserName = "jowi@wp.pl", PasswordHash= "AQAAAAEAACcQAAAAEKdiy29I+ijpQR4YirW9TBRnXrvV9NrC6ksXtRJ2FjPEd8MNTcFx5A34JEECSnqPqw==" };
-        IdentityUser paw = new IdentityUser() { Email = "paw@wp.pl", UserName = "paw@wp.pl" };
+        List<Lottery> lotteries;
 
+        IdentityUser jowi;
+        IdentityUser paw;
         List<Santa> santas1;
         List<Santa> santas2;
         List<Santa> santas3;
 
-        List<Lottery> lotteries;
-        public MockLotteryRepository()
+        public MockLotteryRepository(AppDbContext context)
         {
+            Context = context;
+            jowi = context.Users.Find("2b067e53-f15c-44fe-81f5-1d8924ad7736");
+            paw = context.Users.Find("fe6706c3-b877-4586-9c58-d04d7c81dfe3");
+
             users = new List<IdentityUser>()
             {
                 jowi,
@@ -50,13 +56,22 @@ namespace WhosYourSanta.Models
             {
                 new Lottery(){Name="CrazyJowi", Admin=jowi, Santas=santas1 },
                 new Lottery(){Name="CrazyPaw", Admin=paw, Santas=santas2},
-                new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3}
+                new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="Good Frankies", Admin=jowi, Santas=santas2},
+                new Lottery(){Name="Makarony", Admin=paw, Santas=santas1}
             };
         }
 
-        public List<Lottery> GetLotteries(IdentityUser user)
+ 
+
+
+        public List<Lottery> GetLotteries(string idUser)
         {
+            var user = Context.Users.Find(idUser);
+
+
             return lotteries.Where(i => i.Admin == user).ToList();
+
         }
 
     }
