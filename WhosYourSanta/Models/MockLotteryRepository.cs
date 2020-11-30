@@ -22,8 +22,8 @@ namespace WhosYourSanta.Models
         public MockLotteryRepository(AppDbContext context)
         {
             Context = context;
-            jowi = context.Users.Find("AQAAAAEAACcQAAAAEKdiy29I+ijpQR4YirW9TBRnXrvV9NrC6ksXtRJ2FjPEd8MNTcFx5A34JEECSnqPqw==");
-            paw = context.Users.Find("AQAAAAEAACcQAAAAEKdiy29I+ijpQR4YirW9TBRnXrvV9NrC6ksXtRJ2FjPEd8MNTcFx5A34JEECSnqPqw==");
+            jowi = context.Users.Find("2b067e53-f15c-44fe-81f5-1d8924ad7736");
+            paw = context.Users.Find("fe6706c3-b877-4586-9c58-d04d7c81dfe3");
 
             users = new List<IdentityUser>()
             {
@@ -56,16 +56,13 @@ namespace WhosYourSanta.Models
             {
                 new Lottery(){Name="CrazyJowi", Admin=jowi, Santas=santas1 },
                 new Lottery(){Name="CrazyPaw", Admin=paw, Santas=santas2},
-                new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3}
+                new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="Good Frankies", Admin=jowi, Santas=santas2},
+                new Lottery(){Name="Makarony", Admin=paw, Santas=santas1}
             };
         }
 
-       
-
-        
-
-
-
+ 
 
 
         public List<Lottery> GetLotteries(string idUser)

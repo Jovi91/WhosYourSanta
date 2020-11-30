@@ -32,25 +32,11 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Main(string idUser)
+        public IActionResult Main()
         {
-            //Lottery lot = new Lottery()
-            //{
-            //    Name = "Crazy People",
-            //    Admin = await UserManager.GetUserAsync(User),
-            //    Santas = {new Santa()
-            //    {
-            //        Name="Bob",
-            //        Email="aw@wp.pl"
-            //   } }
+            var userId = UserManager.GetUserId(User);
 
-            //};
-            //List<Lottery> lotteries = new List<Lottery>();
-            //lotteries.Add(lot);
-            //MainViewModel model = new MainViewModel();
-            //model.MyLotteries.Add(lot);
-            //var user = await UserManager.FindByIdAsync(idUser);
-            return View(LotteryRepository.GetLotteries(idUser));
+            return View(LotteryRepository.GetLotteries(userId));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
