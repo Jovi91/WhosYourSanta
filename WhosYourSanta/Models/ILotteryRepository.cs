@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WhosYourSanta.Models
 {
-    interface ILotteryRepository
+    public interface ILotteryRepository
     {
-        public List<Lottery> GetLotteries(IdentityUser user);
+        public List<Lottery> GetLotteries(string IdUser);
     }
 }
