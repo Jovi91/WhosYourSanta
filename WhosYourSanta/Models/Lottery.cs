@@ -12,6 +12,6 @@ namespace WhosYourSanta.Models
         [Required]
         public string Name { get; set; }
         public IdentityUser Admin { get; set; }
-        public List<Santa> Santas { get; set; }
+        public List<Santa> Santas { get; set; } = new List<Santa>();
     }
 }
