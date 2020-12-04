@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,9 +9,11 @@ namespace WhosYourSanta.Models
 {
     public class Lottery
     {
+        [Key]
+        public int Id { get; protected set; }
         [Required]
         public string Name { get; set; }
-        public RegisteredUser Admin { get; set; }
-        public List<Santa> Santas { get; set; }
+        public IdentityUser Admin { get; set; }
+        public List<Santa> Santas { get; set; } = new List<Santa>();
     }
 }

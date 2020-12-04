@@ -1,10 +1,11 @@
-﻿@{
+﻿@inject UserManager<IdentityUser> userManager;
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<hr />
 
-<form method="post" asp-action="@ViewData["Title"]" class="register-form">
+<form method="post"  asp-action="@ViewData["Title"]" class="register-form">
     <div>
         <div class="text-center">
             <h2 class="font-christmas">@ViewData["Title"] </h2>
