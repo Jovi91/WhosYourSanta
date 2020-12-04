@@ -8,11 +8,14 @@
     <title>@ViewData["Title"] - WhosYourSanta</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link href="~/css-santa/santa-site.css" rel="stylesheet" />
+    <link href="~/css-santa/santa-Layout.css" rel="stylesheet" />
+    <link href="~/css-santa/santa-AccountLayout.css" rel="stylesheet" />
+
+    <link href="~/css-santa/santa-MainView.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 navbar-fixed-top ">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WhosYourSanta</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -43,13 +46,13 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="middle-container ">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted pb-0 mb-0">
+    <footer class="border-top footer text-muted pb-0 mb-0 navbar-fixed-footer">
         <div class="container">
             &copy; 2020 - WhosYourSanta - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
