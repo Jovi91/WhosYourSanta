@@ -54,6 +54,8 @@ namespace WhosYourSanta.Models
 
             lotteries = new List<Lottery>()
             {
+                new Lottery(){Name="Flexi", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="Who let the dogs out", Admin=jowi, Santas=santas2},
                 new Lottery(){Name="CrazyJowi", Admin=jowi, Santas=santas1 },
                 new Lottery(){Name="CrazyPaw", Admin=paw, Santas=santas2},
                 new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3},
