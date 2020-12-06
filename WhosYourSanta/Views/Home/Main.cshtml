@@ -47,10 +47,11 @@
             @foreach (var lottery in Model)
             {
                 string photoPath = Url.Content("~/img/santa-avatar.jpg");
+                var numberOfLotteriesOnPage = Model.Count()>3?3:Model.Count();
                 //(lottery.PhotoPath ?? "noimage.jpg");
-                <button class="lottery btn btn-background-snowFall">
-                    
-                        <div class="btn-lottery-details">
+                <button class="lottery btn btn-background-snowFall" style="height:calc(100%/@numberOfLotteriesOnPage)">
+
+                        <div class="lottery-title">
                             <div>@lottery.Name</div></div>
 
                     <img src="@photoPath" class="rounded-circle img-lottery-centered img-lottery-position" alt="Cinque Terre" />
