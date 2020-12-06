@@ -54,13 +54,21 @@ namespace WhosYourSanta.Models
 
             lotteries = new List<Lottery>()
             {
+                new Lottery(){Name="more good stuff", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="why now why here", Admin=jowi, Santas=santas2},
+                new Lottery(){Name="crazy world", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="haaay jun", Admin=jowi, Santas=santas2},
+                new Lottery(){Name="greate news here", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="Testi sesnt", Admin=jowi, Santas=santas2},
+                new Lottery(){Name="Bum bum bum", Admin=jowi, Santas=santas3},
+                new Lottery(){Name="Maka laka szaka", Admin=jowi, Santas=santas2},
                 new Lottery(){Name="Flexi", Admin=jowi, Santas=santas3},
                 new Lottery(){Name="Who let the dogs out", Admin=jowi, Santas=santas2},
                 new Lottery(){Name="CrazyJowi", Admin=jowi, Santas=santas1 },
-                new Lottery(){Name="CrazyPaw", Admin=paw, Santas=santas2},
+                new Lottery(){Name="DZIADEK", Admin=paw, Santas=santas2},
                 new Lottery(){Name="CrazyJovi2", Admin=jowi, Santas=santas3},
                 new Lottery(){Name="Good Frankies", Admin=jowi, Santas=santas2},
-                new Lottery(){Name="Makarony", Admin=paw, Santas=santas1}
+                new Lottery(){Name="ANTEK", Admin=paw, Santas=santas1}
             };
         }
 
