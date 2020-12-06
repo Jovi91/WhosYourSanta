@@ -1,42 +1,20 @@
 ﻿
 
-.bacground-image{
-    position: fixed;
-    /* The image used */
-    background-image: url("../img/panorama01.jpg");
-     /*Add the blur effect */
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-   /*  Full height*/ 
-    width: 100%;
-    height: 80%;
-    top: 70px;
-  /*   Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: 100% auto;
- 
-}
-
-.bacground-image222 {
+.bacground-image {
     background: url("../img/panorama01.jpg") no-repeat center center fixed;
-    position:fixed;
+    position: fixed;
     background-size: cover;
     height: 100%;
+    width: 100%;
     overflow: hidden;
+    /*Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
 }
 
 .mainView-container {
     width: 100%;
     height: 80vh;
-/*    background-image: url(../img/panorama01.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);*/
-    /*background-size: auto 100%;*/
 }
 
 /* Position text in the middle of the page/image */
@@ -124,4 +102,12 @@
 
 .card-header, .card-footer {
     background-color: lightgrey;
+}
+
+/*Mobie screen*/
+@media only screen and (max-width: 600px) {
+    .img-lottery-centered {
+        width: 90%;
+        height:auto;
+    }
 }
