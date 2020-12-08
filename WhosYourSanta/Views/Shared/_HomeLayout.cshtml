@@ -1,0 +1,20 @@
+﻿@inject UserManager<IdentityUser> userManager;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bacground-image"></div>
+<div class="mainView-container">
+    <div class="content">
+
+        @RenderBody()
+
+    </div>
+</div>
+
+
+
+
+@RenderSection("Scripts", required: false)
+

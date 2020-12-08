@@ -12,56 +12,42 @@
     <div class="bacground-image"></div>
     <div class="mainView-container">
         <div class="content">
-            @*<div class="col-sm-12 h-100">
-
-            <div class="row p-4 h-25">
-                <button type="button" class="btn btn-primary btn-block ">Button 1</button>
-            </div>
-            <div class="row p-4 ">
-                <div class="col-sm-6 mx-auto">
-                        <button type="button" class="btn btn-lg btn-primary btn-block">Butk</button>
-                </div>
-
-            </div>
-
-        </div>*@
-
-            @if (Model.Count() < 1)
-            {
-
-                <button type="button" class="btn btn-full-width btn-background-snowFall font-christmas">Add Christmas Lottery</button>
-
-            }
-            else
-            {
-                <button type="button" class="btn btn-half-width btn-background-snowFall font-christmas">Add Christmas Lottery</button>
-            }
-            @*<div class="col-sm-12 h-25">
-            <div class="row p-4 h-100">
-                <button type="button" class="btn btn-primary btn-block ">Button 1</button>
-            </div>
 
 
-        </div>*@
-        <div class="allMyLotteries">
-            @foreach (var lottery in Model)
-            {
-                string photoPath = Url.Content("~/img/santa-avatar.jpg");
-                var numberOfLotteriesOnPage = Model.Count()>3?3:Model.Count();
-                //(lottery.PhotoPath ?? "noimage.jpg");
-                <button class="lottery btn btn-background-snowFall" style="height:calc(100%/@numberOfLotteriesOnPage)">
+            @{
+                string AddLotteryBtnClass= "btn-full-width";
+                string LotteriesSectionWidth = "0";
+                if (Model.Count() > 0)
+                {
+                    AddLotteryBtnClass = "btn-half-width";
+                    LotteriesSectionWidth = "50%";
+                }
+
+             }
+                <a type="button" asp-action="AddLottery" asp-controller="Home" class="btn @AddLotteryBtnClass btn-background-snowFall font-christmas">Add Christmas Lottery</a>
+    
+           
+
+            <div class="allMyLotteries" style="width:@LotteriesSectionWidth">
+                @foreach (var lottery in Model)
+                {
+                    string photoPath = Url.Content("~/img/santa-avatar.jpg");
+                    var numberOfLotteriesOnPage = Model.Count() > 3 ? 3 : Model.Count();
+                    //(lottery.PhotoPath ?? "noimage.jpg");
+                    <button class="lottery btn btn-background-snowFall" style="height:calc(100%/@numberOfLotteriesOnPage)">
 
                         <div class="lottery-title">
-                            <div class="font-christmas">@lottery.Name</div></div>
+                            <div class="font-christmas">@lottery.Name</div>
+                        </div>
 
-                    <img src="@photoPath" class="rounded-circle img-lottery-centered img-lottery-position" alt="Cinque Terre" />
-   
-                    @*</div>*@
-                </button>
+                        <img src="@photoPath" class="rounded-circle img-lottery-centered img-lottery-position" alt="Cinque Terre" />
 
-            }
+                        @*</div>*@
+                    </button>
 
-        </div>
+                }
+
+            </div>
 
         </div>
 

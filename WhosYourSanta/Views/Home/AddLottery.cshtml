@@ -1,0 +1,76 @@
+﻿@model WhosYourSanta.ViewModel.AddLotteryViewModel
+
+
+@{
+    ViewData["Title"] = "AddLottery";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+<div class="half" style="background-color:lawngreen">
+    <form asp-action="AddLottery">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="lottery-dataSection" style="background-color:forestgreen">
+            <input asp-for="Name" class="form-control addLottery-form-control" placeholder="Lottery Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="lottery-checkbox font-christmas">
+                <label asp-for="AdminTakesPartInLottery">
+                    <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="valueChanged()" />
+                    @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
+                </label>
+            </div>
+
+            @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
+                <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
+            </div>*@
+
+
+        </div>
+
+
+        <div class="lottery-dataSection" style="background-color:greenyellow">
+
+
+        </div>
+    </form>
+</div>
+<div class="half" style="background-color:yellow"></div>
+
+<script type="text/javascript">
+    function valueChanged() {
+        if ($('#takePart-checkbox').is(":checked"))
+            $("#AdminAsSanta").show();
+        else
+            $("#AdminAsSanta").hide();
+    }
+</script>
+@*<h1>AddLottery</h1>
+
+    <h4>Lottery</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddLottery">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

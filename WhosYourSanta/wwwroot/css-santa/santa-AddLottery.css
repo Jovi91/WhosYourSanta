@@ -1,0 +1,27 @@
+﻿.half{
+    width:50%;
+    height:100%;
+
+    
+}
+
+.lottery-dataSection{
+    width:90%;
+    margin:5% auto;
+    padding:5%;
+}
+
+.addLottery-form-control{
+    text-align:center;
+}
+
+.lottery-checkbox{
+    margin:5%;
+    color:black;
+}
+
+.AdminAsSanta{
+    margin:5% auto;
+    padding:5%;
+
+}

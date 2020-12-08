@@ -39,6 +39,11 @@ namespace WhosYourSanta.Controllers
             return View(LotteryRepository.GetLotteries(userId));
         }
 
+        public IActionResult AddLottery()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
