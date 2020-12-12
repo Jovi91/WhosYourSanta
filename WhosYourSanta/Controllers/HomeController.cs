@@ -36,7 +36,7 @@ namespace WhosYourSanta.Controllers
         {
             var userId = UserManager.GetUserId(User);
 
-            return View(LotteryRepository.GetLotteries(userId));
+            ; return View(LotteryRepository.GetLotteries(userId));
         }
 
         public IActionResult AddLottery()

@@ -14,9 +14,12 @@ namespace WhosYourSanta.ViewModel
         [Key]
         public int Id { get; protected set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Podany format jest niepoprawny dla Adresu Email")]
         public string Name { get; set; }
         public IdentityUser Admin { get; set; }
         public List<Santa> Santas { get; set; } = new List<Santa>();
+
+        public Santa Santa { get; set; }
 
         [Display(Name="I want take part in the lottery")]
         public bool AdminTakesPartInLottery { get; set; }

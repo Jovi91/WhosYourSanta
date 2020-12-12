@@ -10,7 +10,9 @@ namespace WhosYourSanta.Models
     {
         [Key]
         public int Id { get; protected set; }
+        [MaxLength(20,ErrorMessage ="Nick nie może być dłuższy niż 20 znaków")]
         public string Name { get; set; }
+        [EmailAddress(ErrorMessage ="Podany format jest niepoprawny dla Adresu Email")]
         public string Email { get; set; }
         public string Role { get; set; }
         public Santa DrawnSanta { get; set; }
