@@ -12,33 +12,56 @@
 
 var santasArray = [];
 var santaDataArray = [];
-
-function FillDataWithAdminEmail(myvar) {
-    var Email = myvar;
+var userEmial;
+function FillDataWithAdminEmail(email) {
+    var userEmial = email;
     //var Email = '@User.Identity.Name';
     if (document.getElementById("takePart-checkbox").checked) {
-        document.getElementById("SantaEmail").value = Email;
+        document.getElementById("SantaEmail").value = userEmial;
         document.getElementById("field-validation-error").textContent = "";
-        document.getElementById("SantaName").value = Email.substring(0, Email.indexOf('@'));
+        document.getElementById("SantaName").value = userEmial.substring(0, userEmial.indexOf('@'));
     }
     else {
         document.getElementById("SantaEmail").value = "";
         document.getElementById("SantaName").value = "";
+
+
+        var santaList = document.getElementById("SantaList");
+        var listItem = santaList.getElementsByTagName("li");
+        var spann = santaList.getElementsByTagName("span");
+        var newNums = [];
+
+        
+        for (var i = 0; i < listItem.length; i++) {
+            //substring: wyodrębnić email, usunac spacje
+            var tekst = listItem[i].innerText;
+            var spanText = spann[i].innerText;
+            var emailItem = (tekst.substring(tekst.indexOf("\xa0"), tekst.length - spanText.length)).trim();
+            if (emailItem == userEmial) {
+                listItem[i].remove();
+                santasArray.splice(i, 1);
+                return;
+            }
+
+
+
+        }
     }
 }
 
 function SantaAllreadyExists(item) {
-    alert(item[0] + " " + item[1])
-    if (item[0] == inputName) {
+    alert(item[1] + " " + item[2])
+    if (item[1] == inputName) {
         alert("Mikołaj o takim nicku znajduje się już na liście");
         return true;
     }
-    else if (item[1] == inputEmail) {
+    else if (item[2] == inputEmail) {
         alert("Mikołaj o takim mailu znajduje się już na liście");
         return true;
     }
 
 }
+
 // Create a "close" button and append it to each list item
 //var myNodelist = document.getElementsByTagName("LI");
 //var i;
@@ -85,14 +108,8 @@ function AddSantaToTheList() {
         alert("Email i nick mikołaja nie mogą być puste")
     }
     else {
-        //var test = "ab";
-        //var tab1 = ["11", "12"]
-        //var tab2 = ["21", "22"]
         if (santasArray.length > 0) {
-            //var santas = [tab1, tab2];
-            //santasArray.forEach(SantaAllreadyExists(inputName,inputEmail));
             //if (santasArray.some((item) => {
-
             //    alert(item[0] + " " + item[1])
             //    if (item[0] == inputName) {
             //        alert("Mikołaj o takim nicku znajduje się już na liście");
@@ -105,36 +122,18 @@ function AddSantaToTheList() {
 
             //})) { return; }
 
-            //santasArray.some()
+            //Check if sanata is allredy in the array 
             if (santasArray.some(SantaAllreadyExists)) {
                 document.getElementById("SantaEmail").value="";
                 document.getElementById("SantaName").value="";
                 return;
             }
-            //santasArray.forEach(function (item) {
-            //    alert(item[0] + " " + item[1])
-            //    if(item[0] == inputName) {
-            //        alert("Mikołaj o takim nicku znajduje się już na liście");
-            //        return;
-            //    }
-            //    else if (item[1] == inputEmail) {
-            //        alert("Mikołaj o takim mailu znajduje się już na liście");
-            //        return;
-            //    }
-            //});
-
-           // santas.forEach(function (entry) { test += entry[1] + " "; });
-            //test += " ";
         }
-        //alert(test);
-        document.getElementById("EmailList").appendChild(li);
+        document.getElementById("SantaList").appendChild(li);
         //add santa to the array
-        santaDataArray.push(inputName, inputEmail);
+        santaDataArray.push(santasArray.length, inputName, inputEmail);
         santasArray.push(santaDataArray)
         santaDataArray = [];
-
-        //santasArray.push(santaDataArray.push(inputName, inputEmail));
-
     
     }
 
@@ -149,14 +148,53 @@ function AddSantaToTheList() {
     span.appendChild(txt);
     li.appendChild(span);
 
+
+    deleteListItem();
+    
+
+
+    //for (i = 0; i < close.length; i++) {
+    //    close[i].onclick = function () {
+    //        var div = this.parentElement;
+    //        var listItem = div.innerText;
+    //        div.style.display = "none";
+    //        div.setAttribute("id", "idItemToRemove");
+    //        var itemToRemove = document.getElementById("idItemToRemove");
+    //        itemToRemove.remove();
+
+    //        var santaNameToRemove = listItem.substring(0, listItem.indexOf("\xa0"));
+    //        let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+
+    //        if (santasArray[santaIndexToRemove] ==! 'undefined')
+    //            return;
+    //        else
+    //            santasArray.splice(santaIndexToRemove, 1);
+    //    }
+    //}
+
+    
+
+}
+
+function deleteListItem() {
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function () {
             var div = this.parentElement;
+            var listItem = div.innerText;
             div.style.display = "none";
+            div.setAttribute("id", "idItemToRemove");
+            var itemToRemove = document.getElementById("idItemToRemove");
+            itemToRemove.remove();
+
+            var santaNameToRemove = listItem.substring(0, listItem.indexOf("\xa0"));      
+            let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+
+            if (santasArray[santaIndexToRemove] ==! 'undefined')
+                return;
+            else
+                santasArray.splice(santaIndexToRemove, 1);
         }
     }
-
-    
 
 }
 
