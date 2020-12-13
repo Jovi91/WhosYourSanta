@@ -9,6 +9,21 @@
     }
 });
 
+function sendForm(projectId, target) {
+    $.ajax({
+        url: target,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            projectId: projectId,
+            userAccountIds: [1, 2, 3]
+        }),
+        success: ajaxOnSuccess,
+        error: function (jqXHR, exception) {
+            alert('Error message.');
+        }
+    });
+}
 
 var santasArray = [];
 var santaDataArray = [];
@@ -25,26 +40,19 @@ function FillDataWithAdminEmail(email) {
         document.getElementById("SantaEmail").value = "";
         document.getElementById("SantaName").value = "";
 
-
+        //Remove Admin from santas List and Array
         var santaList = document.getElementById("SantaList");
         var listItem = santaList.getElementsByTagName("li");
-        var spann = santaList.getElementsByTagName("span");
-        var newNums = [];
-
-        
+        var span = santaList.getElementsByTagName("span");     
         for (var i = 0; i < listItem.length; i++) {
-            //substring: wyodrębnić email, usunac spacje
-            var tekst = listItem[i].innerText;
-            var spanText = spann[i].innerText;
-            var emailItem = (tekst.substring(tekst.indexOf("\xa0"), tekst.length - spanText.length)).trim();
-            if (emailItem == userEmial) {
+            var listItemContent = listItem[i].innerText;
+            var spanContent = span[i].innerText;
+            var emailOnTheList = (listItemContent.substring(listItemContent.indexOf("\xa0"), listItemContent.length - spanContent.length)).trim();
+            if (emailOnTheList == userEmial) {
                 listItem[i].remove();
                 santasArray.splice(i, 1);
                 return;
             }
-
-
-
         }
     }
 }
@@ -198,6 +206,22 @@ function deleteListItem() {
 
 }
 
+function CreateObjects(value, index, array) {
+            output += value + "</br>";
+        }
+    function CreateObjectFromArray() {
+
+        output = "";
+
+        santasArray.forEach(CreateObjects);
+
+
+        //for (var obj of santasArray) {
+        //    obj[key] = whatever;
+        //}
+
+        console.log(output);
+    }
 
 function valueChanged() {
     if ($('#takePart-checkbox').is(":checked"))

@@ -36,14 +36,26 @@ namespace WhosYourSanta.Controllers
         {
             var userId = UserManager.GetUserId(User);
 
-            ; return View(LotteryRepository.GetLotteries(userId));
+            return View(LotteryRepository.GetLotteries(userId));
         }
 
+        [HttpGet]
         public IActionResult AddLottery()
         {
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddLottery(AddLotteryViewModel model)
+        {
+            var user = await UserManager.GetUserAsync(User);
+            var lottery = new Lottery() { Admin = user, Name = model.Name };
+            //if(ModelState.IsValid)
+            //{
+
+            //}
+            return RedirectToAction("Index");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

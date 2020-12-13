@@ -13,7 +13,7 @@
 
 <div class="half" style="background-color:lawngreen">
 
-    <form asp-action="AddLottery">
+    <form method="post" asp-action="AddLottery">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="lottery-dataSection" style="background-color:forestgreen">
             <input asp-for="Name" class="form-control addLottery-form-control" placeholder="Lottery Name" />
@@ -26,8 +26,8 @@
             </div>
 
             @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
-                    <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
-                </div>*@
+            <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
+        </div>*@
 
 
         </div>
@@ -45,8 +45,11 @@
             </div>
 
             <div class="form-group">
-                    <input type="button" value="Create" class="btn btn-primary" onclick="AddSantaToTheList()" />
-                </div>
+                <input type="button" value="Create" class="btn btn-primary" onclick="AddSantaToTheList()" />
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()"/>
         </div>
     </form>
 </div>
