@@ -16,6 +16,8 @@ namespace WhosYourSanta.Models
 
         }
         public DbSet<Santa> Santas { get; set; }
+
+        public DbSet<Lottery> Lottery { get; set; }
         public DbSet<IdentityUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -56,6 +56,7 @@ namespace WhosYourSanta.Controllers
             {
                 var user = await UserManager.GetUserAsync(User);
                 var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
+                LotteryRepository.Add(lottery);
             }
             return RedirectToAction("Index");
         }

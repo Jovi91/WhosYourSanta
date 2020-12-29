@@ -84,5 +84,9 @@ namespace WhosYourSanta.Models
 
         }
 
+        public Lottery Add(Lottery lottery)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

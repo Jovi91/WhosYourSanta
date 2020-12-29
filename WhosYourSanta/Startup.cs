@@ -33,7 +33,8 @@ namespace WhosYourSanta
                     .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
 
-            services.AddScoped<ILotteryRepository, MockLotteryRepository>();
+            services.AddScoped<ILotteryRepository, LotteryRepository>();
+           // services.AddScoped<ISantaRepository, SantaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
