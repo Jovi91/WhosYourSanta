@@ -7,97 +7,100 @@
     var user = User.Identity.Name;
     var makas = "Hmmmm";
 
+
+
 }
+  
 
 
 
-<div class="half" style="background-color:lawngreen">
+    <div class="half" style="background-color:lawngreen">
 
-    <form method="post" asp-action="AddLottery">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="lottery-dataSection" style="background-color:forestgreen">
-            <input asp-for="Name" class="form-control addLottery-form-control" placeholder="Lottery Name" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-            <div class="lottery-checkbox font-christmas">
-                <label asp-for="AdminTakesPartInLottery">
-                    <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />
-                    @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
-                </label>
-            </div>
+        <form method="post" asp-action="AddLottery">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="lottery-dataSection" style="background-color:forestgreen">
+                <input asp-for="Name" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="lottery-checkbox font-christmas">
+                    <label asp-for="AdminTakesPartInLottery">
+                        <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />
+                        @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
+                    </label>
+                </div>
 
-            @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
-            <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
-        </div>*@
-
-
-        </div>
-
-
-        <div class="lottery-dataSection" style="background-color:greenyellow">
-            <p>Dodaj mikołajów do loterii</p>
-            <div style="border:3px solid darkgreen">
-                <input asp-for="Santa.Name" id="SantaName" class="form-control addLottery-form-control" placeholder="Name or Nick" />
-                <span asp-validation-for="Santa.Name" class="text-danger"></span>
-                <input asp-for="Santa.Email" id="SantaEmail" class="form-control addLottery-form-control" placeholder="Email" />
-                <span asp-validation-for="Santa.Email" id="field-validation-error" class="text-danger"></span>
+                @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
+                        <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
+                    </div>*@
 
 
             </div>
 
+
+            <div class="lottery-dataSection" style="background-color:greenyellow">
+                <p>Dodaj mikołajów do loterii</p>
+                <div style="border:3px solid darkgreen">
+                    <input asp-for="Santa.Name" id="SantaName" class="form-control addLottery-form-control" placeholder="Name or Nick" />
+                    <span asp-validation-for="Santa.Name" class="text-danger"></span>
+                    <input asp-for="Santa.Email" id="SantaEmail" class="form-control addLottery-form-control" placeholder="Email" />
+                    <span asp-validation-for="Santa.Email" id="field-validation-error" class="text-danger"></span>
+
+
+                </div>
+
+                <div class="form-group">
+                    <input type="button" value="Create" class="btn btn-primary" onclick="AddSantaToTheList()" />
+                </div>
+            </div>
             <div class="form-group">
-                <input type="button" value="Create" class="btn btn-primary" onclick="AddSantaToTheList()" />
+                <input type="button" id="submitTest" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()" />
+            </div>
+        </form>
+    </div>
+    <div class="half" style="background-color:yellow">
+        <div id="SantaListContent" style="background-color:beige; border:2px solid yellow; color:forestgreen; padding:10px">
+            <ol id="SantaList">
+            </ol>
+        </div>
+
+    </div>
+
+
+
+
+    @*client-side Validation*@
+    @section Scripts{
+        @{
+            <partial name="_ValidationScriptsPartial" />
+            <script src="~/js/AddLottery.js"></script>
+        }
+
+    }
+    @*<h1>AddLottery</h1>
+
+        <h4>Lottery</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddLottery">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" class="form-control" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()"/>
-        </div>
-    </form>
-</div>
-<div class="half" style="background-color:yellow">
-    <div id="SantaListContent" style="background-color:beige; border:2px solid yellow; color:forestgreen; padding:10px">
-        <ol id="SantaList">
-        </ol>
-    </div>
 
-</div>
-
-
-
-
-@*client-side Validation*@
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-        <script src="~/js/AddLottery.js"></script>
-    }
-
-}
-@*<h1>AddLottery</h1>
-
-    <h4>Lottery</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="AddLottery">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Id" class="control-label"></label>
-                    <input asp-for="Id" class="form-control" />
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>*@
 

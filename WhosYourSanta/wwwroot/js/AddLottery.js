@@ -9,25 +9,27 @@
     }
 });
 
-function sendForm(projectId, target) {
-    $.ajax({
-        url: target,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            projectId: projectId,
-            userAccountIds: [1, 2, 3]
-        }),
-        success: ajaxOnSuccess,
-        error: function (jqXHR, exception) {
-            alert('Error message.');
-        }
-    });
-}
+//function sendForm(projectId, target) {
+//    $.ajax({
+//        url: target,
+//        type: 'POST',
+//        contentType: 'application/json',
+//        data: JSON.stringify({
+//            projectId: projectId,
+//            userAccountIds: [1, 2, 3]
+//        }),
+//        success: ajaxOnSuccess,
+//        error: function (jqXHR, exception) {
+//            alert('Error message.');
+//        }
+//    });
+//}
 
 var santasArray = [];
 var santaDataArray = [];
 var userEmial;
+var santa = new Object();
+var testArray = ["maslo", "braslo", "kraslo"];
 function FillDataWithAdminEmail(email) {
     var userEmial = email;
     //var Email = '@User.Identity.Name';
@@ -57,13 +59,13 @@ function FillDataWithAdminEmail(email) {
     }
 }
 
-function SantaAllreadyExists(item) {
-    alert(item[1] + " " + item[2])
-    if (item[1] == inputName) {
+function SantaAllreadyExists() {
+    alert(santa.Name + " " + santa.Email)
+    if (santa.Name == inputName) {
         alert("Mikołaj o takim nicku znajduje się już na liście");
         return true;
     }
-    else if (item[2] == inputEmail) {
+    else if (santa.Email == inputEmail) {
         alert("Mikołaj o takim mailu znajduje się już na liście");
         return true;
     }
@@ -139,9 +141,13 @@ function AddSantaToTheList() {
         }
         document.getElementById("SantaList").appendChild(li);
         //add santa to the array
-        santaDataArray.push(santasArray.length, inputName, inputEmail);
-        santasArray.push(santaDataArray)
-        santaDataArray = [];
+        santa = {
+            "Id": santasArray.length,
+            "Name": inputName,
+            "Email": inputEmail
+        };
+        //santaDataArray.push(santasArray.length, inputName, inputEmail);
+        santasArray.push(santa)
     
     }
 
@@ -206,22 +212,69 @@ function deleteListItem() {
 
 }
 
-function CreateObjects(value, index, array) {
-            output += value + "</br>";
-        }
-    function CreateObjectFromArray() {
-
-        output = "";
-
-        santasArray.forEach(CreateObjects);
 
 
-        //for (var obj of santasArray) {
-        //    obj[key] = whatever;
-        //}
-
-        console.log(output);
+$('#submitTest').click(function (e) {
+    var lotteryName = $('#lotteryName').val();
+    var lotteryData = {
+        Name: lotteryName,
+        Santas: santasArray
     }
+    var data = JSON.stringify(lotteryData);  
+    //var Mydata = JSON.stringify({
+    //    'santas': santaas
+    //});
+    //    'name': "krowa"
+    //});
+    //JSON.stringify({ 'santas': santasArray, 'name': "krowa" })
+    $.ajax({
+        //traditional: true,
+        url: '/Home/AddLottery',
+        type: 'post',
+        //contentType: 'plain/text',
+        //dataType: 'json',
+        contentType: 'application/json',
+        // data: { 'santas': testArray, 'names':testArray},
+        //contentType: "application/json; charset=utf-8",
+        data: data,
+        success: function () {
+            alert("yes");
+        },
+        error: function (errMsg) {
+            alert(errMsg);
+        }
+    })
+});
+
+
+//POniższe działą
+//$('#submitTest').click(function (e) {
+//    var Mydata = JSON.stringify(santasArray);
+
+//    $.ajax({
+//        url: '/Home/AddLottery',
+//        type: 'post',
+//        contentType: 'application/json',
+//        data: Mydata,
+//        success: function () {
+//            alert("yes");
+//        },
+//        error: function (errMsg) {
+//            alert(errMsg);
+//        }
+//    })
+//});
+//Ale działa tylko wtedy gdy w HomeController przed parametrem metody AddLottery jest [FromBody]:
+//        [HttpPost]
+//        public async Task < IActionResult > AddLottery([FromBody]List < Santa > santas){ ... }
+//Oraz gdy używam formatu:
+//var Mydata = JSON.stringify(santasArray);  
+
+function CreateObjectFromArray() {
+    santasArray.forEach(santa => {
+        console.log(santa);
+    });
+}
 
 function valueChanged() {
     if ($('#takePart-checkbox').is(":checked"))

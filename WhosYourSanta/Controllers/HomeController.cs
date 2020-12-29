@@ -46,10 +46,13 @@ namespace WhosYourSanta.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddLottery(AddLotteryViewModel model)
+        public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
         {
+            //, [FromBody] List<Santa> santas
+            //List<Santa> santaa = santas;
+            //string name = "krowa";
             var user = await UserManager.GetUserAsync(User);
-            var lottery = new Lottery() { Admin = user, Name = model.Name };
+            var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
             //if(ModelState.IsValid)
             //{
 
