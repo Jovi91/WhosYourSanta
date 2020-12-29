@@ -215,30 +215,26 @@ function deleteListItem() {
 
 
 $('#submitTest').click(function (e) {
+    if ($('#lotteryName').val() == "" || $('#lotteryNameErrorMsg').val().length > 0) {
+        alert("Wprowadź poprawną nazwę loterii!")
+        return;
+    }
+        
+
     var lotteryName = $('#lotteryName').val();
     var lotteryData = {
         Name: lotteryName,
         Santas: santasArray
     }
     var data = JSON.stringify(lotteryData);  
-    //var Mydata = JSON.stringify({
-    //    'santas': santaas
-    //});
-    //    'name': "krowa"
-    //});
-    //JSON.stringify({ 'santas': santasArray, 'name': "krowa" })
+
     $.ajax({
-        //traditional: true,
         url: '/Home/AddLottery',
         type: 'post',
-        //contentType: 'plain/text',
-        //dataType: 'json',
         contentType: 'application/json',
-        // data: { 'santas': testArray, 'names':testArray},
-        //contentType: "application/json; charset=utf-8",
         data: data,
         success: function () {
-            alert("yes");
+            window.location.href = "/Home/Main"
         },
         error: function (errMsg) {
             alert(errMsg);

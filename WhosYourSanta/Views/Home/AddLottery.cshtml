@@ -20,7 +20,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="lottery-dataSection" style="background-color:forestgreen">
                 <input asp-for="Name" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>
                 <div class="lottery-checkbox font-christmas">
                     <label asp-for="AdminTakesPartInLottery">
                         <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />

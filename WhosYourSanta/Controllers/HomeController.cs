@@ -51,12 +51,12 @@ namespace WhosYourSanta.Controllers
             //, [FromBody] List<Santa> santas
             //List<Santa> santaa = santas;
             //string name = "krowa";
-            var user = await UserManager.GetUserAsync(User);
-            var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
-            //if(ModelState.IsValid)
-            //{
 
-            //}
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.GetUserAsync(User);
+                var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
+            }
             return RedirectToAction("Index");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
