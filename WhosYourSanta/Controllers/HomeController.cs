@@ -17,11 +17,14 @@ namespace WhosYourSanta.Controllers
         public UserManager<IdentityUser> UserManager { get; }
         public ILotteryRepository LotteryRepository { get; }
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository)
+        public SignInManager<IdentityUser> SignInManager { get; }
+
+        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository, SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
             UserManager = userManager;
             LotteryRepository = lotteryRepository;
+            SignInManager = signInManager;
         }
 
 
@@ -29,7 +32,10 @@ namespace WhosYourSanta.Controllers
         
         public IActionResult Index()
         {
-            return View();
+            if (SignInManager.IsSignedIn(User))
+                return RedirectToAction("Main");
+            else
+                return View();
         }
 
         public IActionResult Main()
@@ -48,10 +54,6 @@ namespace WhosYourSanta.Controllers
         [HttpPost]
         public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
         {
-            //, [FromBody] List<Santa> santas
-            //List<Santa> santaa = santas;
-            //string name = "krowa";
-
             if (ModelState.IsValid)
             {
                 var user = await UserManager.GetUserAsync(User);
@@ -60,10 +62,18 @@ namespace WhosYourSanta.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult LotteryDetails(int id)
+        {
+            Lottery lottery = LotteryRepository.GetLottery(id);
+            List <String> lista = LotteryRepository.GetAllSantasFromAllLotteries();
+            return View(lottery);
         }
     }
 }

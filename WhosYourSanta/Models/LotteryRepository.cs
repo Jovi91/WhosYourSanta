@@ -26,5 +26,26 @@ namespace WhosYourSanta.Models
             Context.SaveChanges();
             return lottery;
         }
+ 
+        public Lottery GetLottery(int id)
+        {
+            Lottery lottery = Context.Lottery.Where(i => i.Id == id).FirstOrDefault();
+            return lottery;
+        }
+
+        public List<string> GetAllSantasFromAllLotteries()
+        {
+            List<String> mylist= new List<string>();
+           // var Lotteriers = Context.Lottery.
+            foreach (Lottery l in Context.Lottery)
+            {
+                foreach (Santa s in l.Santas)
+                {
+                    mylist.Add(l.Name + " " + s.Name);
+                }
+            }
+
+            return mylist;
+        }
     }
 }

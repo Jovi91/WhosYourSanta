@@ -9,6 +9,9 @@ namespace WhosYourSanta.Models
     public interface ILotteryRepository
     {
         public List<Lottery> GetLotteries(string IdUser);
+
+        public Lottery GetLottery(int id);
         public Lottery Add(Lottery lottery);
+        public List<String> GetAllSantasFromAllLotteries();
     }
 }

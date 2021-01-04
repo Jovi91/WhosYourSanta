@@ -1,0 +1,31 @@
+﻿@model WhosYourSanta.Models.Lottery
+
+@{
+    ViewData["Title"] = "LotteryDetails";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+
+<div>
+
+    <dl class="row">
+
+        <h4>Lottery Name: @Model.Name</h4>
+    </dl>
+    <dl class="row">
+        @*<h4>@Model.Santas[0].Email</h4>*@
+        <ul>
+            @foreach (Santa santa in Model.Santas)
+            {
+                <li>@santa.Name</li>
+            }
+
+        </ul>
+
+    </dl>
+</div>
+<div>
+   @* <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+   @* <a asp-action="Index">Back to List</a>*@
+</div>
