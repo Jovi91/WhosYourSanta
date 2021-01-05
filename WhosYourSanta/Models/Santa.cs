@@ -16,5 +16,8 @@ namespace WhosYourSanta.Models
         public string Email { get; set; }
         public string Role { get; set; }
         public Santa DrawnSanta { get; set; }
+
+        //navigation property
+        //public virtual Lottery Lottery { get; set; } //na razie nie potrzebna jeżeli będzie potrzebna (np do Lazy Loading) to trzeba zrobić migrację
     }
 }

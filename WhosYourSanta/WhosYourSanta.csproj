@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201229110512_AddingLottery.cs" />
     <Compile Remove="Migrations\20201229110512_AddingLottery.Designer.cs" />
+    <Compile Remove="Migrations\20210105222649_RemoveEagerLoadingConnectedMigrations.cs" />
+    <Compile Remove="Migrations\20210105222649_RemoveEagerLoadingConnectedMigrations.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

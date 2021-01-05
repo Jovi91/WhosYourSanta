@@ -9,11 +9,17 @@ namespace WhosYourSanta.Models
 {
     public class Lottery
     {
-        [Key]
+        public Lottery()
+        {
+            this.Santas = new HashSet<Santa>();
+        }
+        [Key]        
         public int Id { get; protected set; }
         [Required]
         public string Name { get; set; }
         public IdentityUser Admin { get; set; }
-        public List<Santa> Santas { get; set; } = new List<Santa>();
+        public virtual ICollection<Santa> Santas { get; set; }
+
+
     }
 }

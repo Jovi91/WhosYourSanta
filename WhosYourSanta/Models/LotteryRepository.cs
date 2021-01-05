@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WhosYourSanta.Models
 {
@@ -36,8 +37,8 @@ namespace WhosYourSanta.Models
         public List<string> GetAllSantasFromAllLotteries()
         {
             List<String> mylist= new List<string>();
-           // var Lotteriers = Context.Lottery.
-            foreach (Lottery l in Context.Lottery)
+           // Include("Santas") -> Eager Loading
+            foreach (Lottery l in Context.Lottery.Include("Santas"))
             {
                 foreach (Santa s in l.Santas)
                 {
