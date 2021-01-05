@@ -46,6 +46,12 @@ namespace WhosYourSanta.Models
 
         }
 
+        public IEnumerable<Santa> GetSantasFromLottery(int idLottery)
+        {
+            
+            throw new NotImplementedException();
+        }
+
         public Santa Update(Santa santaChanges)
         {
             var santa = Context.Santas.Attach(santaChanges);

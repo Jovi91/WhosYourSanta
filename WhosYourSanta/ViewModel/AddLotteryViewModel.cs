@@ -18,6 +18,8 @@ namespace WhosYourSanta.ViewModel
         public IdentityUser Admin { get; set; }
         public List<Santa> Santas { get; set; } = new List<Santa>();
 
+        public Santa Santa { get; set; }
+
         [Display(Name="I want take part in the lottery")]
         public bool AdminTakesPartInLottery { get; set; }
 

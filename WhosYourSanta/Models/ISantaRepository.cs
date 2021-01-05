@@ -7,6 +7,7 @@ namespace WhosYourSanta.Models
 {
     interface ISantaRepository
     {
+        IEnumerable<Santa> GetSantasFromLottery(int idLottery);
         Santa GetSanta(int Id);
         IEnumerable<Santa> GetAllSantas();
         Santa Add(Santa santa);
