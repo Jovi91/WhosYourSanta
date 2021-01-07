@@ -6,10 +6,11 @@
     background-size: cover;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     /*Add the blur effect */
     filter: blur(8px);
     -webkit-filter: blur(8px);
+    top:0;
 }
 
 .mainView-container {
@@ -132,9 +133,10 @@
     --initialBgColor: transparent;
     --slideBgColorFirstHalf: white;
     --slideBgColorSecondHalf: #272838;
-    color: var(--initialTextColor);
+    color: #272838;
     background-image: linear-gradient(90deg, var(--initialBgColor) 0%, var(--initialBgColor) 50%, var(--slideBgColorFirstHalf) 50%, var(--slideBgColorFirstHalf) 75%, var(--slideBgColorSecondHalf) 75%, var(--slideBgColorSecondHalf) 100%);
     background-size: 400%;
+    background-image: -ms-linear-gradient(left, transparent 0%, transparent 50%, white 50%, white 75%, black 75%, black 100%);
     transition: background-position .3s cubic-bezier(.47, .1, 1, .63), color .2s linear;
     transition-delay: 0.0s, 0.15s;
     border-top-right-radius: 20%;
@@ -142,7 +144,11 @@
 }
 
     .bg_slider:hover {
-        color: var(--slideTextColor);
+        color: transparent;
+
+
+
+
         cursor: pointer;
         background-position: -50% 100%;
     }
