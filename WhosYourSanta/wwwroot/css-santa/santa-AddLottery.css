@@ -11,36 +11,104 @@
     margin: 7%;
     padding-top:5%;
 
-}
-.main-form{
-    position:relative;
+
 }
 
-.form #lotteryName {
+/**********************************Lottery Name Input Section with Animation****************************************/
+
+.form-input{
+    position:relative;
+    height:50px;    
+    overflow:hidden;
+}
+
+
+
+.label-lotteryName {
+    position: absolute;
+    margin-bottom:0;
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    left: 0px;
+    color:black;
+    text-align:left;
+    pointer-events:none;
+    border-bottom:1px solid black;
+    font-family:sans-serif;
+    font-size:18px;
+}
+
+.label-lotteryName::after {
+    content: "";
+    position: absolute;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    bottom: -1px;
+    left: 0px;
+    border-bottom: 3px solid #6e8896;
+    /*#0e5880;*/
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+.content-lotteryName{
+    position:absolute;
+    bottom:5px;
+    left:0px;
+    transition:all 0.3s ease;
+}
+
+.form #lotteryNameInput {
     height: 100%;
     width: 100%;
     border: none;
-    padding-top: 20px;
-    color: #595f6e;
-    font-size: 16px;
+    padding-top: 30px;
+    color: #0e5880;
+    font-size: 18px;
+    background-color: transparent;
+    text-align:center;
+    /*outline: 0;*/
+    box-shadow: none;
 }
+
+/* + - everything we do to /.form #lotteryNameInput/ works also on /.label-lotteryName/*/
+.form #lotteryNameInput:focus + .label-lotteryName .content-lotteryName,
+.form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName .content-lotteryName
+{
+    outline: 0;
+    transform: translateY(-130%);
+    font-size: 14px;
+    color: #0e5880;
+}
+
+.form #lotteryNameInput:focus + .label-lotteryName::after,
+.form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName::after {
+    transform:translateX(0%);
+}
+
+
+/***************************************************************************************************************/
+
 
 .btn-primary {
-    color: #fff;
-    background-color: #242222;
-    border-color: #1c1b1b;
+color: #fff;
+background-color: #242222;
+border-color: #1c1b1b;
 }
 
-    .btn-primary:hover {
-        color: #fff;
-        background-color: #2a2d6e;
-        border-color: #24265c;
-    }
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2a2d6e;
+    border-color: #24265c;
+}
 
 .lottery-dataSection {
-    width: 90%;
-    margin: 1% auto;
-    padding: 1%;
+width: 90%;
+margin: 1% auto;
+padding: 1%;
 }
 
 .addLottery-form-control{

@@ -20,11 +20,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="main-form">
                 <div class="lottery-dataSection">
-
-                    <input name="lotteryName" asp-for="Name" autocomplete="off" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
-                    <label for="lotteryName" class="label-lotteryName">
-                        <span class="content-lotteryName">Nazwa</span>
-                    </label>
+                    <div class="form-input">
+                        <input name="lotteryName" asp-for="Name" autocomplete="off" id="lotteryNameInput" class="form-control addLottery-form-control" placeholder=" "/>
+                        <label for="lotteryName" class="label-lotteryName">
+                            <span class="content-lotteryName">Nazwa</span>
+                        </label>
+                    </div>
                     <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>
 
                     @*<input asp-for="Name" autocomplete="off" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />

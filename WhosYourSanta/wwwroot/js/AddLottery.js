@@ -225,13 +225,13 @@ function deleteListItem() {
 
 
 $('#submitTest').click(function (e) {
-    if ($('#lotteryName').val() == "" || $('#lotteryNameErrorMsg').val().length > 0) {
+    if ($('#lotteryNameInput').val() == "" || $('#lotteryNameErrorMsg').val().length > 0) {
         alert("Wprowadź poprawną nazwę loterii!")
         return;
     }
         
 
-    var lotteryName = $('#lotteryName').val();
+    var lotteryName = $('#lotteryNameInput').val();
     var lotteryData = {
         Name: lotteryName,
         Santas: santasArray
