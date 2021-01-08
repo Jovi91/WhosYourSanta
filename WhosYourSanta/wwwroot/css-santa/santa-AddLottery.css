@@ -1,4 +1,16 @@
-﻿.half{
+﻿:root {
+    --baseBorderColor: black;
+    --transitionBorderColor: #5fa8d3;
+    /*#6e8896;*/
+    --transitionTextLabelColor: #0e5880;
+    --transitionTextInputColor: #0e5880;
+    --placeholderInputColor: #232526;
+    --buttonColorOnHover: #366f91;
+    --buttonBorderColorOnHover: #255470;
+}
+
+
+.half{
     width:50%;
     height:100%;
 
@@ -9,9 +21,8 @@
     border: 2px solid dimgray;
     border-radius: 10%;
     margin: 7%;
-    padding-top:5%;
-
-
+    padding-top: 5%;
+    background: rgba(255, 255, 255, 0.4)
 }
 
 /**********************************Lottery Name Input Section with Animation****************************************/
@@ -26,33 +37,33 @@
 
 .label-lotteryName {
     position: absolute;
-    margin-bottom:0;
+    margin-bottom: 0;
     width: 100%;
     height: 100%;
     bottom: 0px;
     left: 0px;
-    color:black;
-    text-align:left;
-    pointer-events:none;
-    border-bottom:1px solid black;
-    font-family:sans-serif;
-    font-size:18px;
+    color: black;
+    text-align: left;
+    pointer-events: none;
+    border-bottom: 1px solid var(--baseBorderColor);
+    /*font-family: sans-serif;*/
+    font-size: 18px;
 }
 
-.label-lotteryName::after {
-    content: "";
-    position: absolute;
-    margin-bottom: 0;
-    width: 100%;
-    height: 100%;
-    bottom: -1px;
-    left: 0px;
-    border-bottom: 3px solid #6e8896;
-    /*#0e5880;*/
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    overflow: visible;
-}
+    .label-lotteryName::after {
+        content: "";
+        position: absolute;
+        margin-bottom: 0;
+        width: 100%;
+        height: 100%;
+        bottom: -1px;
+        left: 0px;
+        border-bottom: 3px solid var(--transitionBorderColor);
+        /*#0e5880;*/
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        overflow: visible;
+    }
 
 .content-lotteryName{
     position:absolute;
@@ -66,10 +77,10 @@
     width: 100%;
     border: none;
     padding-top: 30px;
-    color: #0e5880;
-    font-size: 18px;
+    color: var(--transitionTextInputColor);
+    font-size: 25px;
     background-color: transparent;
-    text-align:center;
+    text-align: center;
     /*outline: 0;*/
     box-shadow: none;
 }
@@ -81,7 +92,7 @@
     outline: 0;
     transform: translateY(-130%);
     font-size: 14px;
-    color: #0e5880;
+    color: var(--transitionTextLabelColor);
 }
 
 .form #lotteryNameInput:focus + .label-lotteryName::after,
@@ -93,17 +104,67 @@
 /***************************************************************************************************************/
 
 
-.btn-primary {
-color: #fff;
-background-color: #242222;
-border-color: #1c1b1b;
+.form-addSanta {
+    background-color: transparent;
+    border: 1px solid var(--baseBorderColor);
+    margin-bottom: 5px;
+    text-align: left;
+    color: var(--placeholderInputColor);
 }
 
-.btn-primary:hover {
+    .form-addSanta::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: var(--placeholderInputColor);       
+    }
+
+    .form-addSanta::-moz-placeholder { /* Firefox 19+ */
+        color: var(--placeholderInputColor);        
+    }
+
+    .form-addSanta:-ms-input-placeholder { /* IE 10+ */
+        color: var(--placeholderInputColor);
+    }
+
+    .form-addSanta:-moz-placeholder { /* Firefox 18- */
+        color: var(--placeholderInputColor);
+    }
+
+    .form-addSanta:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus::-moz-placeholder { /* Firefox 19+ */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus:-ms-input-placeholder { /* IE 10+ */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus:-moz-placeholder { /* Firefox 18- */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus, .form-addSanta:not(:placeholder-shown) {
+        background-color: transparent;
+        border: 1px solid var(--transitionBorderColor);
+        margin-bottom: 5px;
+        text-align: center;
+        color: var(--transitionTextInputColor);
+    }
+
+.btn-primary {
     color: #fff;
-    background-color: #2a2d6e;
-    border-color: #24265c;
+    background-color: #242222;
+    border-color: #1c1b1b;
+    outline:none;
 }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: var(--buttonColorOnHover);
+        border-color: var(--buttonBorderColorOnHover);
+        outline:none;
+    }
 
 .lottery-dataSection {
 width: 90%;
@@ -111,14 +172,13 @@ margin: 1% auto;
 padding: 1%;
 }
 
-.addLottery-form-control{
-    /*text-align:center;*/
-    
-}
+
 
 .lottery-checkbox{
-    margin:5%;
+    margin:3% 0 5% 0;
     color:black;
+    text-align:left;
+    font-size:18px;
 }
 
 .AdminAsSanta{
@@ -216,10 +276,14 @@ ol li:nth-child(odd) {
     position:absolute;
     top:0;
     right:0;
-    padding: 7px 15px 7px 15px;
+    padding: 4px 15px 4px 15px;
 }
 
     .close:hover {
         background-color: #f44336;
         color: white;
     }
+
+#addLotteryForm .text-danger{
+    font-size:13px;
+}

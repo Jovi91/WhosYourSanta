@@ -99,7 +99,7 @@ function AddSantaToTheList() {
     var li = document.createElement("li");
     inputEmail = document.getElementById("SantaEmail").value;
     inputName = document.getElementById("SantaName").value;
-    var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + inputEmail);
+    var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0' + inputEmail);
     li.appendChild(t);
 
     //if santa data are not valid show the message and quit
@@ -224,12 +224,20 @@ function deleteListItem() {
 
 
 
-$('#submitTest').click(function (e) {
-    if ($('#lotteryNameInput').val() == "" || $('#lotteryNameErrorMsg').val().length > 0) {
+$('#submitLotteryBtn').click(function (e) {
+
+    //$('#lotteryNameErrorMsg').val().length;
+    var invalidNameErrorLength = document.getElementById('lotteryNameErrorMsg').innerText.length;
+    if ($('#lotteryNameInput').val() == "" || invalidNameErrorLength > 0) {
         alert("Wprowadź poprawną nazwę loterii!")
         return;
     }
-        
+
+    //Do zmiany na 4444444444444444444444444444444444444444444444444444444444444444444444444444444
+    if (santasArray.length < 1) {
+        alert("Loteria musi zawierać co najmniej czterech mikołajów.")
+        return;
+    }
 
     var lotteryName = $('#lotteryNameInput').val();
     var lotteryData = {
@@ -276,15 +284,26 @@ $('#submitTest').click(function (e) {
 //Oraz gdy używam formatu:
 //var Mydata = JSON.stringify(santasArray);  
 
-//function CreateObjectFromArray() {
-//    santasArray.forEach(santa => {
-//        console.log(santa);
-//    });
-//}
+function CreateObjectFromArray() {
+    santasArray.forEach(santa => {
+        console.log(santa);
+    });
+}
 
 function valueChanged() {
     if ($('#takePart-checkbox').is(":checked"))
         $("#AdminAsSanta").show();
     else
         $("#AdminAsSanta").hide();
+}
+
+//$('#lotteryNameErrorMsg').on('DOMSubtreeModified', function (e) {
+   
+//        alert("Hi you are authorised for this page");
+//});
+
+$("#lotteryNameErrorMsg").text('').trigger('tryThis'); 
+
+function tryThis(){
+    alert("WOOORKS???");
 }

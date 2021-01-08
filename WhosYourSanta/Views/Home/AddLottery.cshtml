@@ -21,7 +21,7 @@
             <div class="main-form">
                 <div class="lottery-dataSection">
                     <div class="form-input">
-                        <input name="lotteryName" asp-for="Name" autocomplete="off" id="lotteryNameInput" class="form-control addLottery-form-control" placeholder=" "/>
+                        <input asp-for="Name" autocomplete="off" id="lotteryNameInput" class="form-control" placeholder=" "/>
                         <label for="lotteryName" class="label-lotteryName">
                             <span class="content-lotteryName">Nazwa</span>
                         </label>
@@ -32,7 +32,7 @@
                 <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>*@
 
 
-                    <div class="lottery-checkbox font-christmas">
+                    <div class="lottery-checkbox">
                         <label asp-for="AdminTakesPartInLottery">
                             <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />
                             @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
@@ -48,11 +48,11 @@
 
 
                 <div class="lottery-dataSection">
-                    <p>Dodaj mikołajów do loterii</p>
+                    <p style="margin-bottom:0.5rem">Dodaj mikołajów do loterii</p>
                     <div>
-                        <input asp-for="Santa.Name" id="SantaName" class="form-control addLottery-form-control" placeholder="Name or Nick" />
+                        <input asp-for="Santa.Name" autocomplete="off" id="SantaName" class="form-addSanta form-control" placeholder="Imię lub Nick" />
                         <span asp-validation-for="Santa.Name" class="text-danger"></span>
-                        <input asp-for="Santa.Email" id="SantaEmail" class="form-control addLottery-form-control" placeholder="Email" />
+                        <input asp-for="Santa.Email" autocomplete="off" id="SantaEmail" class="form-addSanta form-control" placeholder="Email" />
                         <span asp-validation-for="Santa.Email" id="field-validation-error" class="text-danger"></span>
 
 
@@ -65,7 +65,8 @@
              </div>
             <div class="form-group">
                 @* onclick="CreateObjectFromArray()"*@
-                <input type="button" id="submitLotteryBtn" value="Stwórz Loterię" class="btn btn-primary" />
+                @*<input type="button" id="submitLotteryBtn" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()" />*@
+                <input type="button" id="submitLotteryBtn" value="Stwórz Loterię" class="btn btn-primary" onclick="CreateObjectFromArray()"/>
             </div>
         </form>
     </div>
