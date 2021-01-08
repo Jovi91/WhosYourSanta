@@ -17,7 +17,7 @@ main {
     /*    -webkit-transform: translate3d(-50%, -50%, 0);
     -moz-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);*/
-    position: relative;
+    /*position: relative;*/ /*to było aktywne żeeby wellcome w centrum i jeszcze w santa-Layout main{}*/
     display: block;
     padding: 3%;
     margin: auto;
@@ -26,6 +26,7 @@ main {
     max-width: 350px;
     border-radius: 10%;
     background-color: #f0edf7;
+    transform:translate(8%);
 }
 
 .neon {

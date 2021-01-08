@@ -5,14 +5,47 @@
     
 }
 
-.lottery-dataSection{
-    width:90%;
-    margin:5% auto;
-    padding:5%;
+#addLotteryForm {
+    border: 2px solid dimgray;
+    border-radius: 10%;
+    margin: 7%;
+    padding-top:5%;
+
+}
+.main-form{
+    position:relative;
+}
+
+.form #lotteryName {
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding-top: 20px;
+    color: #595f6e;
+    font-size: 16px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #242222;
+    border-color: #1c1b1b;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #2a2d6e;
+        border-color: #24265c;
+    }
+
+.lottery-dataSection {
+    width: 90%;
+    margin: 1% auto;
+    padding: 1%;
 }
 
 .addLottery-form-control{
-    text-align:center;
+    /*text-align:center;*/
+    
 }
 
 .lottery-checkbox{
@@ -26,41 +59,96 @@
 
 }
 
+#submitLotteryBtn{
+    position:absolute;
+    width:40%;
+    left:5%;
+    bottom:6%;
+}
+
+.notebook {
+    background-image: url("../img/notebook05.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-left: 10%;
+}
+
+#SantaListContent{
+    padding-top:20%;
+    margin-right:10%;
+    color:dimgrey;
+}
+
 /* Remove margins and padding from the list */
 ol {
     margin: 0;
     padding-left: 20px;
 }
 /* Style the list items */
-ol li {
+/*ol li {
     cursor: pointer;
     position: relative;
     text-align:left;
-    padding: 12px 8px 12px 16px;
-    background: #eee;
+    padding: 0% 5% 2% 10%;
+    background: transparent;
     font-size: 18px;
-    transition: 0.2s;
+    transition: 0.2s;*/
     /* make the list items unselectable */
-    -webkit-user-select: none;
+    /*-webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+}*/
 /* Set all odd list items to a different color (zebra-stripes) */
 ol li:nth-child(odd) {
-    background: #f9f9f9;
+    background: transparent;
 }
+    /* Style the list items */
+    /*ol li {
+        cursor: pointer;
+        position: relative;
+        text-align: left;
+        padding: 12px 8px 12px 16px;
+        background: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+        make the list items unselectable -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }*/
+
+    /* Style the list items */
+    ol li {
+        cursor: pointer;
+        position: relative;
+        text-align: left;
+        padding: 7px 8px 7px 16px;
+        background: transparent;
+        font-size: 18px;
+        transition: 0.2s;
+         make the list items unselectable 
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+        /* Set all odd list items to a different color (zebra-stripes) */
+        /*ol li:nth-child(odd) {
+            background: #f9f9f9;
+        }*/
 
 /* Darker background-color on hover */
-ol li:hover {
-    background: #ddd;
-}
+    ol li:hover {
+        background-color:dimgray;
+        color:white;
+    }
 /* Style the close button */
 .close {
     position:absolute;
     top:0;
     right:0;
-    padding: 12px 16px 12px 16px;
+    padding: 7px 15px 7px 15px;
 }
 
     .close:hover {

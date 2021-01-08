@@ -1,24 +1,4 @@
 ﻿
-//@media only screen and(max - width: 600px) {
-
-
-//    .content {
-//        flex - direction: column;
-//        flex - wrap: wrap;
-//    }
-//    .btn - half - width {
-//        width: 100 %;
-//        height: 50 %;
-
-//        border - bottom - left - radius: 10 %;
-//        border - top - left - radius: 10 %;
-//    }
-//    .allMyLotteries
-//    {
-//        height: 50 %;
-//        width: 100 %;
-//    }
-
 function changeProperties() {
 
 

@@ -172,6 +172,7 @@
     .text-black-onhover:hover {
         color: black;
         transition-delay: 150ms;
+        
     }
 
 .text-v-center {

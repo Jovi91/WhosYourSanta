@@ -60,7 +60,6 @@ function FillDataWithAdminEmail(email) {
 }
 
 function SantaAllreadyExists() {
-    alert(santa.Name + " " + santa.Email)
     if (santa.Name == inputName) {
         alert("Mikołaj o takim nicku znajduje się już na liście");
         return true;
@@ -198,10 +197,21 @@ function deleteListItem() {
             div.style.display = "none";
             div.setAttribute("id", "idItemToRemove");
             var itemToRemove = document.getElementById("idItemToRemove");
-            itemToRemove.remove();
 
+           //functions remove() and findIndex aren't supported on IE browsers so i changed it to removeChild() and some()
+           //itemToRemove.remove();
+           // let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+            document.getElementById("SantaList").removeChild(itemToRemove);
             var santaNameToRemove = listItem.substring(0, listItem.indexOf("\xa0"));      
-            let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+           
+            var index;
+            let santaIndexToRemove = santasArray.some(function (e, i) {
+                if (e[1] == santaNameToRemove) {
+                    index = i;
+                    return true;
+                }
+            });
+
 
             if (santasArray[santaIndexToRemove] ==! 'undefined')
                 return;
