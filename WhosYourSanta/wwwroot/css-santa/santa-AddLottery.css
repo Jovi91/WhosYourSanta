@@ -16,6 +16,9 @@
 
     
 }
+#lotteryFormHalf {
+
+}
 
 #addLotteryForm {
     border: 2px solid dimgray;
@@ -189,9 +192,10 @@ padding: 1%;
 
 #submitLotteryBtn{
     position:absolute;
-    width:40%;
-    left:5%;
-    bottom:6%;
+    width:20%;
+    left:25%;
+    transform:translateX(-50%);
+    bottom:2%;
 }
 
 .notebook {
@@ -285,5 +289,72 @@ ol li:nth-child(odd) {
     }
 
 #addLotteryForm .text-danger{
-    font-size:13px;
+    font-size:17px;
+}
+
+/*.scrollable {
+    display:flex;
+    flex-direction:column;
+}
+*/
+@media only screen and (max-width: 800px) {
+
+    /*    #addLotteryForm {
+        margin:7% 7% 0 7%;
+    }*/
+    #scrollable {
+        overflow-y: scroll;
+        flex-direction: column;
+        margin-bottom: 10%;
+        height: 90%;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .half {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #santaListNotebook {
+        height: 80%;
+    }
+
+    .lottery-checkbox {
+        font-size: 13px;
+    }
+
+    .form-control {
+        font-size: initial;
+    }
+
+    .form #lotteryNameInput {
+        font-size: 18px
+    }
+
+    .btn {
+        font-size: initial;
+    }
+
+    .label-lotteryName {
+        font-size: 15px;
+    }
+
+    .form #lotteryNameInput:focus + .label-lotteryName .content-lotteryName,
+    .form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName .content-lotteryName {
+        font-size: 12px;
+    }
+    /*    #addLotteryForm {
+        margin: 7% 7% 0 7%;
+    }*/
+    .form-addSanta {
+        /*padding:1%;*/
+    }
+
+    #submitLotteryBtn {
+        padding: 2px 5% 2px 5%;
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }

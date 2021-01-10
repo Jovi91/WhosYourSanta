@@ -12,16 +12,14 @@
 }
   
 
-
-
-    <div class="half">
+    <div class="half" id="lotteryFormHalf">
 
         <form method="post" id="addLotteryForm" class="form" asp-action="AddLottery">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="main-form">
                 <div class="lottery-dataSection">
                     <div class="form-input">
-                        <input asp-for="Name" autocomplete="off" id="lotteryNameInput" class="form-control" placeholder=" "/>
+                        <input asp-for="Name" autocomplete="off" id="lotteryNameInput" class="form-control" placeholder=" " />
                         <label for="lotteryName" class="label-lotteryName">
                             <span class="content-lotteryName">Nazwa</span>
                         </label>
@@ -29,7 +27,7 @@
                     <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>
 
                     @*<input asp-for="Name" autocomplete="off" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
-                <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>*@
+                        <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>*@
 
 
                     <div class="lottery-checkbox">
@@ -40,15 +38,15 @@
                     </div>
 
                     @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
-                    <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
-                </div>*@
+                            <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
+                        </div>*@
 
 
                 </div>
 
 
                 <div class="lottery-dataSection">
-                    <p style="margin-bottom:0.5rem">Dodaj mikołajów do loterii</p>
+                    <p style="margin-bottom:1%">Dodaj mikołajów do loterii</p>
                     <div>
                         <input asp-for="Santa.Name" autocomplete="off" id="SantaName" class="form-addSanta form-control" placeholder="Imię lub Nick" />
                         <span asp-validation-for="Santa.Name" class="text-danger"></span>
@@ -62,16 +60,16 @@
                         <input type="button" value="Dodaj" class="btn btn-primary" onclick="AddSantaToTheList()" />
                     </div>
                 </div>
-             </div>
+            </div>
             <div class="form-group">
                 @* onclick="CreateObjectFromArray()"*@
                 @*<input type="button" id="submitLotteryBtn" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()" />*@
-                <input type="button" id="submitLotteryBtn" value="Stwórz Loterię" class="btn btn-primary" onclick="CreateObjectFromArray()"/>
+                <input type="button" id="submitLotteryBtn" value="Stwórz Loterię" class="btn btn-primary" onclick="CreateObjectFromArray()" />
             </div>
         </form>
     </div>
-    <div class="half notebook" >
-        <div id="SantaListContent" style=" border:2px solid yellow;">
+    <div class="half notebook" id="santaListNotebook">
+        <div id="SantaListContent">
             <ol id="SantaList">
             </ol>
         </div>
@@ -79,6 +77,7 @@
     </div>
 
 
+   
 
 
     @*client-side Validation*@
