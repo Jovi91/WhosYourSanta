@@ -46,8 +46,8 @@
 
 
                 <div class="lottery-dataSection">
-                    <p style="margin-bottom:1%">Dodaj mikołajów do loterii</p>
-                    <div>
+                    <p class ="lbl-addSanta">Dodaj mikołajów do loterii</p>
+                    <div style="position:relative">
                         <input asp-for="Santa.Name" autocomplete="off" id="SantaName" class="form-addSanta form-control" placeholder="Imię lub Nick" />
                         <span asp-validation-for="Santa.Name" class="text-danger"></span>
                         <input asp-for="Santa.Email" autocomplete="off" id="SantaEmail" class="form-addSanta form-control" placeholder="Email" />
@@ -56,7 +56,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group btn-addSanta">
                         <input type="button" value="Dodaj" class="btn btn-primary" onclick="AddSantaToTheList()" />
                     </div>
                 </div>

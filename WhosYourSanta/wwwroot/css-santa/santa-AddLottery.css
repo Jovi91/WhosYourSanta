@@ -20,11 +20,16 @@
 
 }
 
+.main-form{
+    position:relative;
+    height:100%;
+}
 #addLotteryForm {
+    height:75%;
     border: 2px solid dimgray;
     border-radius: 10%;
     margin: 7%;
-    padding-top: 5%;
+    padding-top: 3%;
     background: rgba(255, 255, 255, 0.4)
 }
 
@@ -106,7 +111,10 @@
 
 /***************************************************************************************************************/
 
-
+.lbl-addSanta {
+    margin-bottom: 1%;
+    font-size: 2.2vw;
+}
 .form-addSanta {
     background-color: transparent;
     border: 1px solid var(--baseBorderColor);
@@ -155,11 +163,19 @@
         color: var(--transitionTextInputColor);
     }
 
+.btn-addSanta {
+    position: relative;
+    margin: 5% 0 2% 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .btn-primary {
     color: #fff;
     background-color: #242222;
     border-color: #1c1b1b;
-    outline:none;
+    outline: none;
 }
 
     .btn-primary:hover {
@@ -178,10 +194,10 @@ padding: 1%;
 
 
 .lottery-checkbox{
-    margin:3% 0 5% 0;
+    margin:3% 0 0 0;
     color:black;
     text-align:left;
-    font-size:18px;
+    font-size:1.8vw;
 }
 
 .AdminAsSanta{
@@ -302,6 +318,14 @@ ol li:nth-child(odd) {
     /*    #addLotteryForm {
         margin:7% 7% 0 7%;
     }*/
+
+    .lbl-addSanta{
+        font-size:17px;
+    }
+
+    .lottery-checkbox{
+        font-size:17px;
+    }
     #scrollable {
         overflow-y: scroll;
         flex-direction: column;
@@ -356,5 +380,15 @@ ol li:nth-child(odd) {
         width: 60%;
         left: 50%;
         transform: translateX(-50%);
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .lbl-addSanta {
+        font-size: 20px;
+    }
+
+    .lottery-checkbox{
+        font-size:20px;
     }
 }
