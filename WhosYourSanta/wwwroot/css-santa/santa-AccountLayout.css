@@ -64,3 +64,10 @@ main {
 .register-form label {
     color: aliceblue;
 }
+
+@media screen and (max-width: 600px) {
+    .register-form{
+    left:50%;
+    }
+
+}
