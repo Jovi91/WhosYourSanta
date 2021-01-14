@@ -27,7 +27,7 @@ namespace WhosYourSanta
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("WhosYourSantaDb")));
+                options => options.UseSqlServer(Configuration.GetConnectionString("WhosYourSantaSomeeDb")));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<AppDbContext>();
