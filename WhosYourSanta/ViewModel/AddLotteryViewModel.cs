@@ -14,6 +14,7 @@ namespace WhosYourSanta.ViewModel
         [Key]
         public int Id { get; protected set; }
         [Required]
+        [MinLength(2),MaxLength(30)]
         public string Name { get; set; }
         public IdentityUser Admin { get; set; }
         public List<Santa> Santas { get; set; } = new List<Santa>();

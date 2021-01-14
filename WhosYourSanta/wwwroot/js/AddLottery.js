@@ -99,8 +99,14 @@ function AddSantaToTheList() {
     var li = document.createElement("li");
     inputEmail = document.getElementById("SantaEmail").value;
     inputName = document.getElementById("SantaName").value;
-    var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0' + inputEmail);
-    li.appendChild(t);
+    //var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0' + inputEmail);
+    //li.appendChild(t);
+
+    var t = document.createTextNode(inputName + ' \xa0\xa0\xa0\xa0\xa0 ' + inputEmail);
+    var div = document.createElement("div");
+    div.setAttribute("id", "santa-data");
+    div.appendChild(t);
+    li.appendChild(div);
 
     //if santa data are not valid show the message and quit
     var span = document.getElementById("field-validation-error");

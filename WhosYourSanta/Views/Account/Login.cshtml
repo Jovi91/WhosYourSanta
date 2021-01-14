@@ -3,6 +3,7 @@
     ViewData["Title"] = "Login";
     ViewData["ButtonValue"] = "Login";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewData["LogTo"] = "Register";
 }
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,7 +20,7 @@
     <div class="custom-checkbox">
         <label asp-for="RememberMe" style="color:dimgray">
             <input asp-for="RememberMe" />
-            @Html.DisplayNameFor(m=>m.RememberMe)
+            @Html.DisplayNameFor(m => m.RememberMe)
         </label>
     </div>
 </div>

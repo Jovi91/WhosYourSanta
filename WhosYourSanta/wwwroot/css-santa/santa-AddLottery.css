@@ -226,7 +226,7 @@ padding: 1%;
 #SantaListContent {
     top: 15%;
     position: relative;
-    margin-right: 10%;
+    margin-right: 7%;
     color: dimgrey;
     overflow-y: scroll;
     height: 75%;
@@ -287,6 +287,7 @@ ol li:nth-child(odd) {
         position: relative;
         text-align: left;
         padding: 7px 8px 7px 16px;
+        overflow-wrap:break-word;
         background: transparent;
         font-size: 18px;
         transition: 0.2s;
@@ -328,6 +329,10 @@ ol li:nth-child(odd) {
     flex-direction:column;
 }
 */
+
+#santa-data{
+    margin-right:40px;
+}
 @media only screen and (max-width: 815px) {
 
     /*    #addLotteryForm {
@@ -357,6 +362,7 @@ ol li:nth-child(odd) {
 
     #santaListNotebook {
         height: 80%;
+        font-size:13px;
     }
 
     .lottery-checkbox {

@@ -16,6 +16,7 @@
     <div class="form-group">
         <input type="submit" value="@ViewData["ButtonValue"]" class="btn neon" />
     </div>
+    <a asp-action="@ViewData["LogTo"]" style=" float: right; font-size: 14px;">@ViewData["LogTo"]</a>
 </form>
 
 @RenderSection("Scripts", required: false)
