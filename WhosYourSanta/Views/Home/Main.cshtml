@@ -6,44 +6,62 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Main.js"></script>
     <title>Main</title>
 </head>
 <body>
     <div class="bacground-image"></div>
     <div class="mainView-container">
         <div class="content">
-            
+
 
             @{
-                string AddLotteryBtnClass= "btn-full-width";
-                string LotteriesSectionWidth = "0";
+                ViewBag.myVar3 = "Third";
+                string AddLotteryBtnClass = "btn-full-width";
+                string LotteriesSectionWidth = "";
+
                 if (Model.Count() > 0)
                 {
                     AddLotteryBtnClass = "btn-half-width";
-                    LotteriesSectionWidth = "50%";
+                    //LotteriesSectionWidth = "width:50%";
+                }
+                else
+                {
+                    LotteriesSectionWidth = "width:0";
                 }
 
-             }
-                <a type="button" asp-action="AddLottery" asp-controller="Home" class="btn @AddLotteryBtnClass btn-background-snowFall font-christmas">Add Christmas Lottery</a>
-    
-           
+            }
+            <a type="button" asp-action="AddLottery" asp-controller="Home" id="addLotterybtnId" class="btn @AddLotteryBtnClass btn-background-snowFall font-christmas">Add Christmas Lottery</a>
 
-            <div class="allMyLotteries" style="width:@LotteriesSectionWidth">
+
+            @*style=@LotteriesSectionWidth*@
+            <div id="allMyLotteriesId" class="allMyLotteries" style=@LotteriesSectionWidth>
                 @foreach (var lottery in Model)
                 {
                     string photoPath = Url.Content("~/img/santa-avatar.jpg");
                     var numberOfLotteriesOnPage = Model.Count() > 3 ? 3 : Model.Count();
+                    var imgSize = numberOfLotteriesOnPage == 1 ? "width:40%" : "height:70%";
                     //(lottery.PhotoPath ?? "noimage.jpg");
-                    <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery btn btn-background-snowFall" style="height:calc(100%/@numberOfLotteriesOnPage)">
+                <div id="lotteryId" class="lottery btn bg_slider" style="height:calc(100%/@numberOfLotteriesOnPage)">
+           
 
-                        <div class="lottery-title">
-                            <div class="font-christmas">@lottery.Name</div>
-                        </div>
+                    <div class="lottery-element lottery-centered  lottery-title">
+                        <div class="font-christmas">@lottery.Name</div>
+                    </div>
 
-                        <img src="@photoPath" class="rounded-circle img-lottery-centered img-lottery-position" alt="Cinque Terre" />
+                    <img src="@photoPath" class="lottery-element rounded-circle img-lottery-position lottery-centered " style=@imgSize alt="Cinque Terre" />
 
-                        @*</div>*@
+                    @*</div>*@
+
+                    <a type="button" asp-route-id="@lottery.Id" asp-action="AddLottery" asp-controller="Home" class="lottery-element lottery-half-size lottery-position-left text-black-onhover font-christmas">
+                        <p class="text-v-center text-position-draw">Wylosuj</p>
+                        @*style="top:calc((@topPosition/10)*100%);right:50%; transform:translateY(calc((@topPosition/10)*-100%));"*@
                     </a>
+                    <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery-element lottery-half-size text-white-onhover font-christmas" style="right:0;">
+                        <p class="text-v-center text-position-details">Szczegóły</p>
+                    </a>
+                </div>
 
                 }
 
@@ -55,5 +73,16 @@
     </div>
 
 
+    @section Scripts {
+        <script type="text/javascript">
+            var numberOfLotteries = @Model.Count(),
+            variable3 = '@ViewBag.myVar3';
+
+        </script>
+    }
+
+   
 </body>
 </html>
+
+

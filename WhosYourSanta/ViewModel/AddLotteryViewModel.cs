@@ -20,7 +20,7 @@ namespace WhosYourSanta.ViewModel
 
         public Santa Santa { get; set; }
 
-        [Display(Name="I want take part in the lottery")]
+        [Display(Name="Chcę wziąć udział w loterii")]
         public bool AdminTakesPartInLottery { get; set; }
 
 

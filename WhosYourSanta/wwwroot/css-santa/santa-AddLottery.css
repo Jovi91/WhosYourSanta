@@ -1,23 +1,187 @@
-﻿.half{
+﻿:root {
+    --baseBorderColor: black;
+    --transitionBorderColor: #5fa8d3;
+    /*#6e8896;*/
+    --transitionTextLabelColor: #0e5880;
+    --transitionTextInputColor: #0e5880;
+    --placeholderInputColor: #232526;
+    --buttonColorOnHover: #366f91;
+    --buttonBorderColorOnHover: #255470;
+}
+
+
+.half{
     width:50%;
     height:100%;
 
     
 }
+#lotteryFormHalf {
 
-.lottery-dataSection{
-    width:90%;
-    margin:5% auto;
-    padding:5%;
 }
 
-.addLottery-form-control{
-    text-align:center;
+#addLotteryForm {
+    border: 2px solid dimgray;
+    border-radius: 10%;
+    margin: 7%;
+    padding-top: 5%;
+    background: rgba(255, 255, 255, 0.4)
 }
+
+/**********************************Lottery Name Input Section with Animation****************************************/
+
+.form-input{
+    position:relative;
+    height:50px;    
+    overflow:hidden;
+}
+
+
+
+.label-lotteryName {
+    position: absolute;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    left: 0px;
+    color: black;
+    text-align: left;
+    pointer-events: none;
+    border-bottom: 1px solid var(--baseBorderColor);
+    /*font-family: sans-serif;*/
+    font-size: 18px;
+}
+
+    .label-lotteryName::after {
+        content: "";
+        position: absolute;
+        margin-bottom: 0;
+        width: 100%;
+        height: 100%;
+        bottom: -1px;
+        left: 0px;
+        border-bottom: 3px solid var(--transitionBorderColor);
+        /*#0e5880;*/
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        overflow: visible;
+    }
+
+.content-lotteryName{
+    position:absolute;
+    bottom:5px;
+    left:0px;
+    transition:all 0.3s ease;
+}
+
+.form #lotteryNameInput {
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding-top: 30px;
+    color: var(--transitionTextInputColor);
+    font-size: 25px;
+    background-color: transparent;
+    text-align: center;
+    /*outline: 0;*/
+    box-shadow: none;
+}
+
+/* + - everything we do to /.form #lotteryNameInput/ works also on /.label-lotteryName/*/
+.form #lotteryNameInput:focus + .label-lotteryName .content-lotteryName,
+.form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName .content-lotteryName
+{
+    outline: 0;
+    transform: translateY(-130%);
+    font-size: 14px;
+    color: var(--transitionTextLabelColor);
+}
+
+.form #lotteryNameInput:focus + .label-lotteryName::after,
+.form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName::after {
+    transform:translateX(0%);
+}
+
+
+/***************************************************************************************************************/
+
+
+.form-addSanta {
+    background-color: transparent;
+    border: 1px solid var(--baseBorderColor);
+    margin-bottom: 5px;
+    text-align: left;
+    color: var(--placeholderInputColor);
+}
+
+    .form-addSanta::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: var(--placeholderInputColor);       
+    }
+
+    .form-addSanta::-moz-placeholder { /* Firefox 19+ */
+        color: var(--placeholderInputColor);        
+    }
+
+    .form-addSanta:-ms-input-placeholder { /* IE 10+ */
+        color: var(--placeholderInputColor);
+    }
+
+    .form-addSanta:-moz-placeholder { /* Firefox 18- */
+        color: var(--placeholderInputColor);
+    }
+
+    .form-addSanta:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus::-moz-placeholder { /* Firefox 19+ */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus:-ms-input-placeholder { /* IE 10+ */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus:-moz-placeholder { /* Firefox 18- */
+        color: var(--transitionTextLabelColor);
+    }
+
+    .form-addSanta:focus, .form-addSanta:not(:placeholder-shown) {
+        background-color: transparent;
+        border: 1px solid var(--transitionBorderColor);
+        margin-bottom: 5px;
+        text-align: center;
+        color: var(--transitionTextInputColor);
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #242222;
+    border-color: #1c1b1b;
+    outline:none;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: var(--buttonColorOnHover);
+        border-color: var(--buttonBorderColorOnHover);
+        outline:none;
+    }
+
+.lottery-dataSection {
+width: 90%;
+margin: 1% auto;
+padding: 1%;
+}
+
+
 
 .lottery-checkbox{
-    margin:5%;
+    margin:3% 0 5% 0;
     color:black;
+    text-align:left;
+    font-size:18px;
 }
 
 .AdminAsSanta{
@@ -26,44 +190,171 @@
 
 }
 
+#submitLotteryBtn{
+    position:absolute;
+    width:20%;
+    left:25%;
+    transform:translateX(-50%);
+    bottom:2%;
+}
+
+.notebook {
+    background-image: url("../img/notebook05.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-left: 10%;
+}
+
+#SantaListContent{
+    padding-top:20%;
+    margin-right:10%;
+    color:dimgrey;
+}
+
 /* Remove margins and padding from the list */
 ol {
     margin: 0;
     padding-left: 20px;
 }
 /* Style the list items */
-ol li {
+/*ol li {
     cursor: pointer;
     position: relative;
     text-align:left;
-    padding: 12px 8px 12px 16px;
-    background: #eee;
+    padding: 0% 5% 2% 10%;
+    background: transparent;
     font-size: 18px;
-    transition: 0.2s;
+    transition: 0.2s;*/
     /* make the list items unselectable */
-    -webkit-user-select: none;
+    /*-webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+}*/
 /* Set all odd list items to a different color (zebra-stripes) */
 ol li:nth-child(odd) {
-    background: #f9f9f9;
+    background: transparent;
 }
+    /* Style the list items */
+    /*ol li {
+        cursor: pointer;
+        position: relative;
+        text-align: left;
+        padding: 12px 8px 12px 16px;
+        background: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+        make the list items unselectable -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }*/
+
+    /* Style the list items */
+    ol li {
+        cursor: pointer;
+        position: relative;
+        text-align: left;
+        padding: 7px 8px 7px 16px;
+        background: transparent;
+        font-size: 18px;
+        transition: 0.2s;
+         make the list items unselectable 
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+        /* Set all odd list items to a different color (zebra-stripes) */
+        /*ol li:nth-child(odd) {
+            background: #f9f9f9;
+        }*/
 
 /* Darker background-color on hover */
-ol li:hover {
-    background: #ddd;
-}
+    ol li:hover {
+        background-color:dimgray;
+        color:white;
+    }
 /* Style the close button */
 .close {
     position:absolute;
     top:0;
     right:0;
-    padding: 12px 16px 12px 16px;
+    padding: 4px 15px 4px 15px;
 }
 
     .close:hover {
         background-color: #f44336;
         color: white;
     }
+
+#addLotteryForm .text-danger{
+    font-size:17px;
+}
+
+/*.scrollable {
+    display:flex;
+    flex-direction:column;
+}
+*/
+@media only screen and (max-width: 800px) {
+
+    /*    #addLotteryForm {
+        margin:7% 7% 0 7%;
+    }*/
+    #scrollable {
+        overflow-y: scroll;
+        flex-direction: column;
+        margin-bottom: 10%;
+        height: 90%;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .half {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #santaListNotebook {
+        height: 80%;
+    }
+
+    .lottery-checkbox {
+        font-size: 13px;
+    }
+
+    .form-control {
+        font-size: initial;
+    }
+
+    .form #lotteryNameInput {
+        font-size: 18px
+    }
+
+    .btn {
+        font-size: initial;
+    }
+
+    .label-lotteryName {
+        font-size: 15px;
+    }
+
+    .form #lotteryNameInput:focus + .label-lotteryName .content-lotteryName,
+    .form #lotteryNameInput:not(:placeholder-shown) + .label-lotteryName .content-lotteryName {
+        font-size: 12px;
+    }
+    /*    #addLotteryForm {
+        margin: 7% 7% 0 7%;
+    }*/
+    .form-addSanta {
+        /*padding:1%;*/
+    }
+
+    #submitLotteryBtn {
+        padding: 2px 5% 2px 5%;
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -60,7 +60,6 @@ function FillDataWithAdminEmail(email) {
 }
 
 function SantaAllreadyExists() {
-    alert(santa.Name + " " + santa.Email)
     if (santa.Name == inputName) {
         alert("Mikołaj o takim nicku znajduje się już na liście");
         return true;
@@ -100,7 +99,7 @@ function AddSantaToTheList() {
     var li = document.createElement("li");
     inputEmail = document.getElementById("SantaEmail").value;
     inputName = document.getElementById("SantaName").value;
-    var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + inputEmail);
+    var t = document.createTextNode(inputName + '\xa0\xa0\xa0\xa0\xa0' + inputEmail);
     li.appendChild(t);
 
     //if santa data are not valid show the message and quit
@@ -198,10 +197,21 @@ function deleteListItem() {
             div.style.display = "none";
             div.setAttribute("id", "idItemToRemove");
             var itemToRemove = document.getElementById("idItemToRemove");
-            itemToRemove.remove();
 
+           //functions remove() and findIndex aren't supported on IE browsers so i changed it to removeChild() and some()
+           //itemToRemove.remove();
+           // let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+            document.getElementById("SantaList").removeChild(itemToRemove);
             var santaNameToRemove = listItem.substring(0, listItem.indexOf("\xa0"));      
-            let santaIndexToRemove = santasArray.findIndex(function (el) { return el[1] == santaNameToRemove; });
+           
+            var index;
+            let santaIndexToRemove = santasArray.some(function (e, i) {
+                if (e[1] == santaNameToRemove) {
+                    index = i;
+                    return true;
+                }
+            });
+
 
             if (santasArray[santaIndexToRemove] ==! 'undefined')
                 return;
@@ -214,14 +224,22 @@ function deleteListItem() {
 
 
 
-$('#submitTest').click(function (e) {
-    if ($('#lotteryName').val() == "" || $('#lotteryNameErrorMsg').val().length > 0) {
+$('#submitLotteryBtn').click(function (e) {
+
+    //$('#lotteryNameErrorMsg').val().length;
+    var invalidNameErrorLength = document.getElementById('lotteryNameErrorMsg').innerText.length;
+    if ($('#lotteryNameInput').val() == "" || invalidNameErrorLength > 0) {
         alert("Wprowadź poprawną nazwę loterii!")
         return;
     }
-        
 
-    var lotteryName = $('#lotteryName').val();
+    //Do zmiany na 4444444444444444444444444444444444444444444444444444444444444444444444444444444
+    if (santasArray.length < 1) {
+        alert("Loteria musi zawierać co najmniej czterech mikołajów.")
+        return;
+    }
+
+    var lotteryName = $('#lotteryNameInput').val();
     var lotteryData = {
         Name: lotteryName,
         Santas: santasArray
@@ -278,3 +296,44 @@ function valueChanged() {
     else
         $("#AdminAsSanta").hide();
 }
+
+//$('#lotteryNameErrorMsg').on('DOMSubtreeModified', function (e) {
+   
+//        alert("Hi you are authorised for this page");
+//});
+
+$("#lotteryNameErrorMsg").text('').trigger('tryThis'); 
+
+function tryThis(){
+    alert("WOOORKS???");
+}
+
+function addDiv() {
+    var content = document.getElementById('content');
+    var div;
+   
+        if ($(window).width() < 802 && !document.getElementById("scrollable")) {
+
+            div = document.createElement("div");
+            var formHalf = document.getElementById('lotteryFormHalf');
+            var notebookHalf = document.getElementById('santaListNotebook');
+            div.setAttribute("id", "scrollable");
+            content.appendChild(div);
+            div.appendChild(formHalf);
+            div.appendChild(notebookHalf);
+
+            //alert($(window).width());
+        } else if (document.getElementById("scrollable") && $(window).width() >= 800) {
+            var content = $("#scrollable").contents();
+            $("#scrollable").replaceWith(content);
+        }
+    
+
+}
+window.onresize = addDiv;
+window.onload = addDiv;
+
+function GFG_Fun() {
+    var content = $("#parent").contents();
+    $("#parent").replaceWith(content);
+} 

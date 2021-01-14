@@ -26,28 +26,54 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+
+        //[HttpPost]
+        //public IActionResult LoginTest()
+        //{
+
+        //    return View("test");
+
+
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> Login(LoginViewModel model)
+        //{
+        //    //if (ModelState.IsValid)
+        //    //{
+        //        var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+
+        //        return RedirectToAction("Main", "Home");
+        //    //}
+
+        //    //return View(model);
+
+
+        //}
+
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginViewModel model)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (result.Succeeded)
             {
-                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-
-                if(result.Succeeded)
-                {
-                    return  RedirectToAction("Main", "Home");
-                }
-
-                ModelState.AddModelError(string.Empty, "Invalid Model Attempt");
+                return RedirectToAction("Main", "Home");
             }
 
-            return View(model);
-           
-
+            ModelState.AddModelError(string.Empty, "Invalid Model Attempt");
         }
 
+        return View(model);
 
-        [HttpPost]
+
+    }
+
+
+    [HttpPost]
         public async Task<IActionResult> Logout()
         {
            await SignInManager.SignOutAsync();

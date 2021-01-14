@@ -14,8 +14,8 @@
     <link href="~/css-santa/santa-MainView.css" rel="stylesheet" />
     <link href="~/css-santa/santa-AddLottery.css" rel="stylesheet" />
     @*[if IE]
-    <link href="~/css-santa/OnlyForIE.css" rel="stylesheet" />
-    [endif]*@
+        <link href="~/css-santa/OnlyForIE.css" rel="stylesheet" />
+        [endif]*@
 </head>
 <body>
     <header>
@@ -63,10 +63,13 @@
     </footer>
 
 
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
     @RenderSection("Scripts", required: false)
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*@RenderSection("my_script_variables", false)*@
+   
 </body>
 </html>
