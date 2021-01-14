@@ -22,6 +22,7 @@
 
 .main-form{
     position:relative;
+
     height:100%;
 }
 #addLotteryForm {
@@ -206,12 +207,13 @@ padding: 1%;
 
 }
 
-#submitLotteryBtn{
-    position:absolute;
-    width:20%;
-    left:25%;
-    transform:translateX(-50%);
-    bottom:2%;
+#submitLotteryBtn {
+    position: absolute;
+    font-size: 17px;
+    width: 25%;
+    left: 25%;
+    transform: translateX(-50%);
+    bottom: 2%;
 }
 
 .notebook {
@@ -221,12 +223,25 @@ padding: 1%;
     padding-left: 10%;
 }
 
-#SantaListContent{
-    padding-top:20%;
-    margin-right:10%;
-    color:dimgrey;
+#SantaListContent {
+    top: 15%;
+    position: relative;
+    margin-right: 10%;
+    color: dimgrey;
+    overflow-y: scroll;
+    height: 75%;
 }
 
+
+    #SantaListContent::-webkit-scrollbar {
+        display: none;
+    }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#SantaListContent {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
 /* Remove margins and padding from the list */
 ol {
     margin: 0;
@@ -296,7 +311,7 @@ ol li:nth-child(odd) {
     position:absolute;
     top:0;
     right:0;
-    padding: 4px 15px 4px 15px;
+    padding: 4px 15px 7px 15px;
 }
 
     .close:hover {
@@ -313,7 +328,7 @@ ol li:nth-child(odd) {
     flex-direction:column;
 }
 */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 815px) {
 
     /*    #addLotteryForm {
         margin:7% 7% 0 7%;
@@ -389,6 +404,6 @@ ol li:nth-child(odd) {
     }
 
     .lottery-checkbox{
-        font-size:20px;
+        font-size:18px;
     }
 }
