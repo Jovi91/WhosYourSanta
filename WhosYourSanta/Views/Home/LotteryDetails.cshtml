@@ -7,23 +7,44 @@
 
 
 
-<div>
+<div class="santasList-bg">
+    <div class="santasList">
+        <h4>@Model.Name</h4>
 
-    <dl class="row">
+        <table class="santaList-tbl">
+            <thead>
+                <tr>
+                    <th class="col-width-m">Imię/Ksywa</th>
+                    <th class="col-width-m">Email</th>
+                    <th class="col-width-m">Losował?</th>
+                    <th class="col-width-s"></th>
+                    <th class="col-width-s"></th>
 
-        <h4>Lottery Name: @Model.Name</h4>
-    </dl>
-    <dl class="row">
-        @*<h4>@Model.Santas[0].Email</h4>*@
-        <ul>
-            @foreach (Santa santa in Model.Santas)
-            {
-                <li>@santa.Name</li>
-            }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Santa santa in Model.Santas)
+                {
+                    string wartosc = santa.DrawnSanta == null ? "Nie" : "Tak";
+                    <tr>
 
-        </ul>
+                        <th>@santa.Name</th>
+                        <th>@santa.Email</th>
+                        <th>@wartosc</th>
+                        <th><input id="editSantaBtn" type="button" /></th>
+                        <th><input id="sendReminderBtn" type="button" /></th>
+                    </tr>
+                }
 
-    </dl>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
 </div>
 <div>
    @* <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
