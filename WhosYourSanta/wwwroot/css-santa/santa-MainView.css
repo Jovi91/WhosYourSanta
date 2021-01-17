@@ -70,18 +70,18 @@
 .allMyLotteries {
     width: 50%;
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
-.allMyLotteries::-webkit-scrollbar {
+/*.allMyLotteries::-webkit-scrollbar {
     display: none;
-}
+}*/
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.allMyLotteries {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
+/*.allMyLotteries {
+    -ms-overflow-style: none;*/ /* IE and Edge */
+    /*scrollbar-width: none;*/ /* Firefox */
+/*}*/
 
 .lottery {
     width:100%;

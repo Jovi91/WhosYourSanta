@@ -10,34 +10,37 @@
 <div class="santasList-bg">
     <div class="santasList">
         <h4>@Model.Name</h4>
-
-        <table class="santaList-tbl">
-            <thead>
-                <tr>
-                    <th class="col-width-m">Imię/Ksywa</th>
-                    <th class="col-width-m">Email</th>
-                    <th class="col-width-m">Losował?</th>
-                    <th class="col-width-s"></th>
-                    <th class="col-width-s"></th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Santa santa in Model.Santas)
-                {
-                    string wartosc = santa.DrawnSanta == null ? "Nie" : "Tak";
+        <div id="table-scroll">
+            <table class="santaList-tbl">
+                <thead>
                     <tr>
+                        <th class="col-width-m">Imię/Ksywa</th>
+                        <th class="col-width-m">Email</th>
+                        <th class="col-width-m">Losował?</th>
+                        <th class="col-width-s"></th>
+                        <th class="col-width-s"></th>
 
-                        <th>@santa.Name</th>
-                        <th>@santa.Email</th>
-                        <th>@wartosc</th>
-                        <th><input id="editSantaBtn" type="button" /></th>
-                        <th><input id="sendReminderBtn" type="button" /></th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (Santa santa in Model.Santas)
+                    {
+                        string wartosc = santa.DrawnSanta == null ? "Nie" : "Tak";
+                        <tr>
 
-            </tbody>
-        </table>
+                            <th>@santa.Name</th>
+                            <th>@santa.Email</th>
+                            <th>@wartosc</th>
+                            <th><input id="editSantaBtn" type="button" /></th>
+                            <th><input id="sendReminderBtn" type="button" /></th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
 
 
 
@@ -46,7 +49,31 @@
 
 
 </div>
+
+@*<span id="deleteSpan_@Model.Id">
+    <a asp-action="DeleteLottery" asp-controller="Administration" asp-route-id="@Model.Id" class="trash-can-btn">Delete</a>
+</span>*@
 <div>
-   @* <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
-   @* <a asp-action="Index">Back to List</a>*@
+    @* <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    @* <a asp-action="Index">Back to List</a>*@
 </div>
+
+
+@*<div class="card-footer">
+    <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
+        <a asp-action="EditUser" asp-controller="Administration"
+           asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+
+        <span id="confirmDeleteSpan_@user.Id" style="display:none">
+            <span>Are you sure you want to delete?</span>
+            <button type="submit" class="btn btn-danger">Yes</button>
+            <a href="#" class="btn btn-primary"
+               onclick="confirmDelete('@user.Id', false)">No</a>
+        </span>
+
+        <span id="deleteSpan_@user.Id">
+            <a href="#" class="btn btn-danger"
+               onclick="confirmDelete('@user.Id', true)">Delete</a>
+        </span>
+    </form>
+</div>*@

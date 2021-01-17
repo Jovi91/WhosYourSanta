@@ -13,8 +13,22 @@
     width: 80%;
     height: 85%;
     top: 8%;
-    left: 10%;
+    left: 11%;
 }
+
+#table-scroll{
+    position:relative;
+    height:87%;
+    width:100%;
+    overflow-y:auto;
+
+}
+
+    #table-scroll thead th {
+        position: sticky;
+        top: 0;
+        background-color: #e8e8e3;
+    }
 .santaList-tbl {
     position: absolute;
     width: 100%;
