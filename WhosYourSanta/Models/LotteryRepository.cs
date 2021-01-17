@@ -27,7 +27,21 @@ namespace WhosYourSanta.Models
             Context.SaveChanges();
             return lottery;
         }
- 
+
+        public Lottery Delete(Lottery lottery)
+        {
+           lottery =  Context.Lottery.Include("Santas").Where(i => i.Id == lottery.Id).FirstOrDefault();
+
+            foreach(Santa santa in lottery.Santas)
+            {
+                Context.Santas.Remove(santa);
+            }
+            Context.Lottery.Remove(lottery);
+            Context.SaveChanges();
+            return lottery;
+
+        }
+
         public Lottery GetLottery(int id)
         {
             Lottery lottery = Context.Lottery.Where(i => i.Id == id).FirstOrDefault();

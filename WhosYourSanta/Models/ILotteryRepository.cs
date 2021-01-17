@@ -12,6 +12,8 @@ namespace WhosYourSanta.Models
 
         public Lottery GetLottery(int id);
         public Lottery Add(Lottery lottery);
+
+        public Lottery Delete(Lottery lottery);
         public List<String> GetAllSantasFromAllLotteries();
     }
 }

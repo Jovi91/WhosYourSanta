@@ -98,5 +98,10 @@ namespace WhosYourSanta.Models
         {
             throw new NotImplementedException();
         }
+
+        public Lottery Delete(Lottery lottery)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

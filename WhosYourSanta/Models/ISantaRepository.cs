@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WhosYourSanta.Models
 {
-    interface ISantaRepository
+    public interface ISantaRepository
     {
         IEnumerable<Santa> GetSantasFromLottery(int idLottery);
         Santa GetSanta(int Id);

@@ -40,3 +40,15 @@
 .col-width-s {
     width: 7%;
 }
+
+.trash-can-btn {
+    height: 120px;
+    width: 100%;
+    background-image: url(../img/trash-can01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    bottom: 3%;
+}
