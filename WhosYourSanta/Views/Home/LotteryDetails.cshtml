@@ -52,9 +52,17 @@
 
 <form style=" width: 100px; height: 100%; position: relative;">
     <span id="deleteSpan_@Model.Id" style=" height: 100%; width: 100px;  right:2%">
-        <a asp-action="DeleteLottery" asp-controller="Administration" asp-route-id="@Model.Id" class="trash-can-btn"></a>
+        <a class="trash-can-btn" onclick="$('#LotteryRemoveConfirmation').css('display', 'unset');"></a>
     </span>
 </form>
+@*onclick="return confirm('Jestes pewien ze chhcesz usunąć @Model.Name ?' )"*@
+<div id="LotteryRemoveConfirmation" style="display:none;">
+    <div id="LotteryRemoveConfirmationContent">
+        <h5>Jesteś pewien, że chcesz usunąć loterię: @Model.Name?</h5>
+        <a class="btn text-bolder-onhover" asp-action="DeleteLottery" asp-controller="Administration" asp-route-id="@Model.Id">Tak</a>
+        <a class="btn text-bolder-onhover" onclick="$('#LotteryRemoveConfirmation').css('display', 'none');">Nie</a>
+    </div>
+</div>
 
 @*<span id="deleteSpan_@Model.Id">
         <a asp-action="DeleteLottery" asp-controller="Administration" asp-route-id="@Model.Id" class="trash-can-btn">Delete</a>

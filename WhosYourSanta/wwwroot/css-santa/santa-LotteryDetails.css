@@ -51,4 +51,30 @@
     position: absolute;
     left: 0;
     bottom: 3%;
+    cursor: pointer;
+}
+
+#LotteryRemoveConfirmation {
+    position: absolute;
+    height: 350px;
+    width: 450px;
+    background-image: url(../img/speechBubble01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    right: 10%;
+    top: 5%;
+}
+
+#LotteryRemoveConfirmationContent {
+    position: relative;
+    top: 50%;
+    width: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-bolder-onhover:hover {
+    font-weight: bold;
+    cursor: pointer;
 }
