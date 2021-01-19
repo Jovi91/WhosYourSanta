@@ -95,3 +95,22 @@ main {
     ::-webkit-scrollbar-thumb:hover {
         background: rgba(0, 0, 0, 0.5);
     }
+
+
+#pageInProgressImg {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    height: 70%;
+    width: 70%;
+    background-position: center;
+    background-image: url(../img/pageUnderConstruction02.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+html {
+    overflow-x: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}

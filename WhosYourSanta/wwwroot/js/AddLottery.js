@@ -290,11 +290,7 @@ $('#submitLotteryBtn').click(function (e) {
 //Oraz gdy używam formatu:
 //var Mydata = JSON.stringify(santasArray);  
 
-function CreateObjectFromArray() {
-    santasArray.forEach(santa => {
-        console.log(santa);
-    });
-}
+
 
 function valueChanged() {
     if ($('#takePart-checkbox').is(":checked"))

@@ -1,8 +1,10 @@
 ﻿@model WhosYourSanta.ViewModel.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    ViewData["ButtonValue"] = "Login";
+    ViewData["asp-action"] = "Login";
+    ViewData["Title"] = "Logowanie";
+    ViewData["ButtonValue"] = "Zaloguj";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewData["LogTo-text"] = "Załóż konto";
     ViewData["LogTo"] = "Register";
 }
 
@@ -13,14 +15,14 @@
     <span asp-validation-for="Email" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <input id="userPasswordInput" asp-for="Password" placeholder="Password" class="form-control" />
+    <input id="userPasswordInput" asp-for="Password" placeholder="Hasło" class="form-control" />
     <span asp-validation-for="Password" class="text-danger"></span>
 </div>
 <div class="form-group">
     <div class="custom-checkbox" onchange="LoginAsGuest()">
         <label style="color:dimgray; font-size:13px;">
             <input id="validateIfGuest" type="checkbox" />
-            Zaloguj jako gość (opcja tymczasowa)
+            Zaloguj jako gość
         </label>
     </div>
     <div class="custom-checkbox">

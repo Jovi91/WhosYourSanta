@@ -29,6 +29,13 @@ namespace WhosYourSanta.Controllers
             return RedirectToAction("Main", "Home");
         }
 
+        [HttpGet]
+        public IActionResult PageInProgress()
+        {
+            return View();
 
-    }
+        }
+
+
+        }
 }

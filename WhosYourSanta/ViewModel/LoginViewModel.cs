@@ -16,7 +16,7 @@ namespace WhosYourSanta.ViewModel
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me")]
+        [Display(Name = "Zapamiętaj mnie")]
         public bool RememberMe { get; set; }
 
         public string PageTitle { get; set; } = "Login";

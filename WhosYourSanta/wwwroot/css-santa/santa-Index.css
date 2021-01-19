@@ -5,7 +5,8 @@
     width: 320px;
     position: absolute;
     left: 46%;
-    transform: translateX(-50%);
+    top: 43%;
+    transform: translate(-50%, -50%);
     background-image: url(../img/present01.gif);
     background-repeat: no-repeat;
 }

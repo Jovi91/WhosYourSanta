@@ -70,9 +70,12 @@
 .allMyLotteries {
     width: 50%;
     position: relative;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
+.allMyLotteries:hover {
+    overflow-y: auto;
+}
 /*.allMyLotteries::-webkit-scrollbar {
     display: none;
 }*/

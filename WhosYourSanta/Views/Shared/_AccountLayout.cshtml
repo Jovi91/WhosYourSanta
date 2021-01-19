@@ -4,19 +4,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<form method="post"  asp-action="@ViewData["Title"]" class="register-form">
-    <div>
-        <div class="text-center">
-            <h3 class="font-christmas">@ViewData["Title"] </h3>
-            <img src="~/img/santa-avatar.jpg" class="rounded-circle img-centered" alt="Cinque Terre" />
+<div class="test-div" style=" width: 100%; height: 83%; position: absolute; display: flex; align-items: center;">
+    <form method="post" asp-action="@ViewData["asp-action"]" class="register-form">
+        <div>
+            <div class="text-center">
+                <h4 class="font-christmas">@ViewData["Title"] </h4>
+                <img src="~/img/santa-avatar.jpg" class="rounded-circle img-centered" alt="Cinque Terre" />
+            </div>
+            @RenderBody()
         </div>
-        @RenderBody()
-    </div>
-    <div class="form-group">
-        <input type="submit" value="@ViewData["ButtonValue"]" class="btn neon" />
-    </div>
-    <a asp-action="@ViewData["LogTo"]" style=" float: right; font-size: 14px;">@ViewData["LogTo"]</a>
-</form>
+        <div class="form-group">
+            <input type="submit" value="@ViewData["ButtonValue"]" class="btn neon" />
+        </div>
+        <a asp-action="@ViewData["LogTo"]" style=" float: right; font-size: 14px;">@ViewData["LogTo-text"]</a>
+    </form>
+
+</div>
+
 
 @RenderSection("Scripts", required: false)

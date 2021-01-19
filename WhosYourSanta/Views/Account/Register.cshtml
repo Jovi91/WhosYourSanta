@@ -1,8 +1,10 @@
 ﻿@model WhosYourSanta.ViewModel.RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
-    ViewData["ButtonValue"] = "Submit";
+    ViewData["asp-action"] = "Register";
+    ViewData["Title"] = "Rejestracja";
+    ViewData["ButtonValue"] = "Załóż konto";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewData["LogTo-text"] = "Zaloguj";
     ViewData["LogTo"] = "Login";
 }
 
@@ -13,11 +15,11 @@
     <span asp-validation-for="Email" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <input asp-for="Password" placeholder="Password" class="form-control" />
+    <input asp-for="Password" placeholder="Hasło" class="form-control" />
     <span asp-validation-for="Password" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <input asp-for="ConfirmePassword" placeholder="Confirm Password" class="form-control" />
+    <input asp-for="ConfirmePassword" placeholder="Potwierdź hasło" class="form-control" />
     <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
 </div>
 
