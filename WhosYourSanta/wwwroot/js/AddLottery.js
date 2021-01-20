@@ -310,30 +310,43 @@ function tryThis(){
     alert("WOOORKS???");
 }
 
-function addDiv() {
-    var content = document.getElementById('content');
-    var div;
-   
-        if ($(window).width() < 802 && !document.getElementById("scrollable")) {
+//function addDiv(param1) {
+//    var content = document.getElementById('content');
+//    var div;
+//    alert(param1);
+//        if ($(window).width() < 802 && !document.getElementById("scrollable")) {
 
-            div = document.createElement("div");
-            var formHalf = document.getElementById('lotteryFormHalf');
-            var notebookHalf = document.getElementById('santaListNotebook');
-            div.setAttribute("id", "scrollable");
-            content.appendChild(div);
-            div.appendChild(formHalf);
-            div.appendChild(notebookHalf);
+//            div = document.createElement("div");
+//            //var formHalf = document.getElementById(firstHalf);
+//            //var notebookHalf = document.getElementById(SecondHalf)
+//            var formHalf = document.getElementById('lotteryFormHalf');
+//            var notebookHalf = document.getElementById('santaListNotebook');
+//            div.setAttribute("id", "scrollable");
+//            content.appendChild(div);
+//            div.appendChild(formHalf);
+//            div.appendChild(notebookHalf);
 
-            //alert($(window).width());
-        } else if (document.getElementById("scrollable") && $(window).width() >= 800) {
-            var content = $("#scrollable").contents();
-            $("#scrollable").replaceWith(content);
-        }
+//            //alert($(window).width());
+//        } else if (document.getElementById("scrollable") && $(window).width() >= 800) {
+//            var content = $("#scrollable").contents();
+//            $("#scrollable").replaceWith(content);
+//        }
     
 
+//}
+//window.onresize = addDiv('lotteryFormHalf', 'santaListNotebook');
+//window.onload = addDiv('lotteryFormHalf', 'santaListNotebook');
+//window.addEventListener('resize', );
+//$(document).$(window).resize(addDiv());
+
+function changeLayout() {
+    addDiv('lotteryFormHalf', 'santaListNotebook');
 }
-window.onresize = addDiv;
-window.onload = addDiv;
+
+window.onresize = changeLayout;
+window.onload = changeLayout;
+
+//window.addEventListener("resize", addDiv)
 
 function GFG_Fun() {
     var content = $("#parent").contents();

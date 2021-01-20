@@ -41,16 +41,16 @@
                 {
                     string photoPath = Url.Content("~/img/santa-avatar.jpg");
                     var numberOfLotteriesOnPage = Model.Count() > 3 ? 3 : Model.Count();
-                    var imgSize = numberOfLotteriesOnPage == 1 ? "width:40%" : "height:70%";
+                    var imgSize = numberOfLotteriesOnPage == 1 ? "max-width:40%" : "height:70%";
                     //(lottery.PhotoPath ?? "noimage.jpg");
                 <div id="lotteryId" class="lottery btn bg_slider" style="height:calc(99%/@numberOfLotteriesOnPage)">
-           
+                    
 
                     <div class="lottery-element lottery-centered  lottery-title">
-                        <div class="font-christmas">@lottery.Name</div>
+                        <div id="lottery-title" class="font-christmas">@lottery.Name</div>
                     </div>
 
-                    <img src="@photoPath" class="lottery-element rounded-circle img-lottery-position lottery-centered " style=@imgSize alt="Cinque Terre" />
+                    <img src="@photoPath" class="lottery-element rounded-circle img-lottery-position img-lottery-size lottery-centered " style=@imgSize alt="Cinque Terre" />
 
                     @*</div>*@
 

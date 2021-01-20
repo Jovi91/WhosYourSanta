@@ -7,7 +7,7 @@
 
 
 
-<div class="santasList-bg">
+<div id="santasList-bg" class="santasList-bg">
     <div class="santasList">
         <h4>@Model.Name</h4>
         <div id="table-scroll">
@@ -50,11 +50,11 @@
 
 </div>
 
-<form style=" width: 100px; height: 100%; position: relative;">
-    <span id="deleteSpan_@Model.Id" style=" height: 100%; width: 100px;  right:2%">
-        <a class="trash-can-btn" onclick="$('#LotteryRemoveConfirmation').css('display', 'inline');"></a>
-    </span>
-</form>
+@*<form style=" width: 100px; height: 100%; position: relative;">*@
+<div id="deleteDiv">
+    <a class="trash-can-btn" onclick="$('#LotteryRemoveConfirmation').css('display', 'inline');"></a>
+</div>
+@*</form>*@
 @*onclick="return confirm('Jestes pewien ze chhcesz usunąć @Model.Name ?' )"*@
 <div id="LotteryRemoveConfirmation" style="display:none;">
     <div id="LotteryRemoveConfirmationContent">
@@ -91,3 +91,21 @@
             </span>
         </form>
     </div>*@
+
+
+@*client-side Validation*@
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        <script src="~/js/site.js"></script>
+        <script>
+            function changeLayout() {
+                addDiv('santasList-bg', 'deleteDiv');
+            }
+
+            window.onresize = changeLayout;
+            window.onload = changeLayout;
+        </script>
+    }
+
+}

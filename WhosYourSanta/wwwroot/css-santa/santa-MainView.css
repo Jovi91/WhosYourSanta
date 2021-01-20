@@ -149,10 +149,6 @@
 
     .bg_slider:hover {
         color: transparent;
-
-
-
-
         cursor: pointer;
         background-position: -50% 100%;
     }
@@ -217,7 +213,35 @@
         left:0;
     }
 
+    .bg_slider {
+        color: transparent;
+        cursor: pointer;
+        background-position: -50% 100%;
+        border-radius: 10%;
+    }
 
+    .text-white-onhover{
+        color: white;
+        transition-delay: 150ms;
+    }
+
+    .text-black-onhover{
+        color: black;
+        transition-delay: 150ms;
+    }
+
+    #lottery-title{
+        color:black;
+        background-color:white;
+        width:fit-content;
+        margin:auto;
+        padding:0 5px 0 5px;
+    }
+
+    .img-lottery-size {
+        width: unset;
+        height: 60%;
+    }
 /*    .text-v-center {
         top: 2%;
         font-size: 15px;
@@ -235,7 +259,7 @@
 }
     @media only screen and (max-width: 1150px) {
         .text-v-center {
-            top: 8%;
+            top: 20%;
             /*transform: translate(0,-10%);*/
             font-size:15px;
         }
@@ -248,5 +272,7 @@
             right: 0%;
             transform: translate(-20%, 0);
         }
+
+
     
 }
