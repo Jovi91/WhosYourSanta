@@ -17,8 +17,8 @@
                         <th class="col-width-m">Imię/Ksywa</th>
                         <th class="col-width-m">Email</th>
                         <th class="col-width-m">Losował?</th>
-                        <th class="col-width-s"></th>
-                        <th class="col-width-s"></th>
+                        <th class="col-width-s">&nbsp;&nbsp;Przypomnij&nbsp;&nbsp; </th>
+                        <th class="col-width-s">Edytuj&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -26,13 +26,13 @@
                     @foreach (Santa santa in Model.Santas)
                     {
                         string wartosc = santa.DrawnSanta == null ? "Nie" : "Tak";
-                        <tr>
+                        <tr >
 
                             <th>@santa.Name</th>
                             <th>@santa.Email</th>
                             <th>@wartosc</th>
-                            <th><input id="editSantaBtn" type="button" /></th>
-                            <th><input id="sendReminderBtn" type="button" /></th>
+                            <th id="sendEmail-img"><a asp-action="PageInProgress" asp-controller="Administration" class="middle-position"></a></th>
+                            <th id="editLotteryMember-img"><a asp-action="PageInProgress" asp-controller="Administration" class="middle-position" ></a></th>
                         </tr>
                     }
 

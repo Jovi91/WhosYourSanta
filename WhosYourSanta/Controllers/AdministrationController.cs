@@ -36,6 +36,14 @@ namespace WhosYourSanta.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult EditLotteryMember()
+        {
+
+            return View();
 
         }
+
+
+    }
 }
