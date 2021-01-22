@@ -13,5 +13,7 @@ namespace WhosYourSanta.Models
         Santa Add(Santa santa);
         Santa Update(Santa santaChanges);
         Santa Delete(int Id);
+
+        Santa GetDrawnSanta(int santaWhoDrawsId);
     }
 }

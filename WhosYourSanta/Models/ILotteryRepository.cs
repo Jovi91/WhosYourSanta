@@ -15,5 +15,7 @@ namespace WhosYourSanta.Models
 
         public Lottery Delete(Lottery lottery);
         public List<String> GetAllSantasFromAllLotteries();
+
+        public bool ChcekIfLotteryHasStarted(int id);
     }
 }

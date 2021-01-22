@@ -32,7 +32,7 @@
                             <th>@santa.Email</th>
                             <th>@wartosc</th>
                             <th id="sendEmail-img"><a asp-action="PageInProgress" asp-controller="Administration" class="middle-position"></a></th>
-                            <th id="editLotteryMember-img"><a asp-action="PageInProgress" asp-controller="Administration" class="middle-position" ></a></th>
+                            <th id="editLotteryMember-img"><a asp-action="EditLotteryMember" asp-controller="Administration" asp-route-id="@santa.Id" asp-route-lotteryID="@Model.Id" class="middle-position" ></a></th>
                         </tr>
                     }
 
@@ -100,7 +100,7 @@
         <script src="~/js/site.js"></script>
         <script>
             function changeLayout() {
-                addDiv('santasList-bg', 'deleteDiv');
+                addDiv('santasList-bg', 'deleteDiv', 608);
             }
 
             window.onresize = changeLayout;

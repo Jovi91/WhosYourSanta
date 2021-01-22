@@ -340,7 +340,7 @@ function tryThis(){
 //$(document).$(window).resize(addDiv());
 
 function changeLayout() {
-    addDiv('lotteryFormHalf', 'santaListNotebook');
+    addDiv('lotteryFormHalf', 'santaListNotebook', 808);
 }
 
 window.onresize = changeLayout;

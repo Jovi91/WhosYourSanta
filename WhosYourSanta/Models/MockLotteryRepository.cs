@@ -103,5 +103,10 @@ namespace WhosYourSanta.Models
         {
             throw new NotImplementedException();
         }
+
+        public bool ChcekIfLotteryHasStarted(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace WhosYourSanta
             services.AddControllersWithViews();
 
             services.AddScoped<ILotteryRepository, LotteryRepository>();
-           // services.AddScoped<ISantaRepository, SantaRepository>();
+            services.AddScoped<ISantaRepository, SantaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

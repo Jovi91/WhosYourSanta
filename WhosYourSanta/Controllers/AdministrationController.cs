@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,14 @@ namespace WhosYourSanta.Controllers
 {
     public class AdministrationController : Controller
     {
-        public AdministrationController(ILotteryRepository lotteryRepository)
+        public AdministrationController(ILotteryRepository lotteryRepository, ISantaRepository santaRepository)
         {
             LotteryRepository = lotteryRepository;
+            SantaRepository = santaRepository;
         }
 
         public ILotteryRepository LotteryRepository { get; }
+        public ISantaRepository SantaRepository { get; }
 
         public IActionResult DeleteLottery(int id)
         {
@@ -37,13 +40,33 @@ namespace WhosYourSanta.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditLotteryMember()
+        public IActionResult EditLotteryMember(int Id, int lotteryId)
         {
+            Santa santa = SantaRepository.GetSanta(Id);
+            bool lotteryStarted = LotteryRepository.ChcekIfLotteryHasStarted(lotteryId);
+            ViewBag.lotteryStarted = lotteryStarted;
+            ViewBag.lotteryId= lotteryId;
 
-            return View();
-
+            return View(santa);
         }
 
+        [HttpPost]
+        public IActionResult EditLotteryMember(int lotteryId, int SantaId, Santa model)
+        {
+            if (ModelState.IsValid)
+            {
+                Santa updatedSanta = SantaRepository.GetSanta(SantaId);
+
+              
+                if(model.Name!=null)
+                    updatedSanta.Name = model.Name;
+
+                updatedSanta.Email = model.Email;
+                SantaRepository.Update(updatedSanta);
+            }
+            //"details", new { id = newEmployee.Id })
+            return RedirectToAction("LotteryDetails", "Home", new { id = lotteryId });
+        }
 
     }
 }

@@ -44,7 +44,8 @@ namespace WhosYourSanta.Models
 
         public Lottery GetLottery(int id)
         {
-            Lottery lottery = Context.Lottery.Where(i => i.Id == id).FirstOrDefault();
+            //Lottery lottery = Context.Lottery.Find(id);
+            Lottery lottery = Context.Lottery.Include("Santas").Where(i => i.Id == id).FirstOrDefault();
             return lottery;
         }
 
@@ -61,6 +62,15 @@ namespace WhosYourSanta.Models
             }
 
             return mylist;
+        }
+        
+        public bool ChcekIfLotteryHasStarted(int id)
+        {
+            Lottery lottery = this.GetLottery(id);
+            List<Santa> santas = lottery.Santas.ToList();
+            //bool lotteryStarted = santas.Where(s => s.DrawnSanta != null).Any();
+            bool lotteryStarted = santas.Where(s => s.DrawnSanta != null).Any();
+            return lotteryStarted;
         }
     }
 }

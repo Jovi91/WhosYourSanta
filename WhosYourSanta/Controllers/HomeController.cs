@@ -51,7 +51,7 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
         {
             if (ModelState.IsValid)
@@ -69,6 +69,7 @@ namespace WhosYourSanta.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [HttpGet]
         public IActionResult LotteryDetails(int id)
         {
             Lottery lottery = LotteryRepository.GetLottery(id);

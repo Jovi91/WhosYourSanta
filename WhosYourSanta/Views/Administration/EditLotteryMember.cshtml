@@ -3,32 +3,59 @@
 @{
     ViewData["Title"] = "EditLotteryMember";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var disableNameChange = ViewBag.lotteryStarted ? 1 : 0;
+    var test = ViewBag.lotteryStarted;
+          //"display:none":"";
 }
 
 
 
 
 
-    <div>
-        <h1>EditLotteryMember</h1>
-        <form asp-action="EditLotteryMember">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div id="EditSantaformContainer">
+    <h3>Edytuj @Model.Name</h3>
+    <form asp-action="EditLotteryMember" asp-controller="Administration" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*<input asp-for="Id" />*@
+        @*<div class="form-group">
+            <label asp-for="Role" class="control-label"></label>
+            <input asp-for="Role" id="santaNameEditInput" autocomplete="off" class="form-addSanta form-control" placeholder="@Model.Role" />
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>*@
+        @*style=@disableNameChange*@
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" id="santaNameEditInput" autocomplete="off" class="form-addSanta form-control" placeholder="@Model.Name"  />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" id="santaEmailEditInput" autocomplete="off" class="form-addSanta form-control" placeholder="@Model.Email" />
+            <span asp-validation-for="Email" class="text-danger " style="font-size:14px;"></span>
+        </div>
+        <div class="form-group">
+            <button asp-route-lotteryId="@ViewBag.lotteryId" asp-route-SantaId="@Model.Id" type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
 
 
 
+@*client-side Validation*@
+@section Scripts{
+    @{
+       
+        <partial name="_ValidationScriptsPartial" />
+        <script type="text/javascript">
+            
+            window.onload = function () {
+                if (@disableNameChange==1)
+                    document.getElementById("santaNameEditInput").disabled = true
+                document.getElementById("santaNameEditInput").value = "";
+                document.getElementById("santaEmailEditInput").value = "";
+            };
+
+        </script>
+    }
+
+}

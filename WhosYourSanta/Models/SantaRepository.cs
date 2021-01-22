@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,12 +8,13 @@ namespace WhosYourSanta.Models
 {
     public class SantaRepository : ISantaRepository
     {
+        public AppDbContext Context { get; }        
+
         public SantaRepository(AppDbContext context)
         {
             Context = context;
         }
 
-        public AppDbContext Context { get; }
 
         public Santa Add(Santa santa)
         {
@@ -42,8 +44,8 @@ namespace WhosYourSanta.Models
 
         public Santa GetSanta(int Id)
         {
-           return Context.Santas.Find(Id);
-
+            // return Context.Santas.Find(Id);
+            return Context.Santas.Include("DrawnSanta").Where(s => s.Id == Id).FirstOrDefault();
         }
 
         public IEnumerable<Santa> GetSantasFromLottery(int idLottery)
@@ -59,6 +61,14 @@ namespace WhosYourSanta.Models
             Context.SaveChanges();
 
             return santaChanges;
+        }
+
+        public Santa GetDrawnSanta(int santaWhoDrawsId)
+        {
+            var Santa = Context.Santas.Include("DrawnSanta").Where(i => i.Id == santaWhoDrawsId).FirstOrDefault();
+            //var Santa = Context.Santas.Where(i => i.Id == santaWhoDrawsId).FirstOrDefault();
+            var DrawnSanta = Santa.DrawnSanta;
+            return DrawnSanta;
         }
     }
 }
