@@ -65,7 +65,7 @@
     position: absolute;
     height: 350px;
     width: 450px;
-    z-index: 1;
+    z-index: 2;
     background-image: url(../img/speechBubble01.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -185,7 +185,7 @@
     #LotteryRemoveConfirmation {
         height: 350px;
         width: 98%;
-        z-index: 1;
+        z-index: 2;
         right: 1%;
         position: fixed;
     }
