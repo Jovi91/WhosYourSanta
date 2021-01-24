@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using WhosYourSanta.ViewModel;
 
 namespace WhosYourSanta.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -29,7 +31,7 @@ namespace WhosYourSanta.Controllers
 
 
 
-        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             if (SignInManager.IsSignedIn(User))
@@ -51,7 +53,7 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
         {
             if (ModelState.IsValid)

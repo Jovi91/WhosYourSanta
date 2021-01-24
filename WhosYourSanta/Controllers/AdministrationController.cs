@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosYourSanta.Models;
 
 namespace WhosYourSanta.Controllers
 {
+    [Authorize]
     public class AdministrationController : Controller
     {
         public AdministrationController(ILotteryRepository lotteryRepository, ISantaRepository santaRepository)

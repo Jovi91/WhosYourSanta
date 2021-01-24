@@ -57,7 +57,7 @@ namespace WhosYourSanta
 
             app.UseAuthentication();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
