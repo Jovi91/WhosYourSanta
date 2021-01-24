@@ -29,7 +29,11 @@ namespace WhosYourSanta
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("WhosYourSantaDb")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = true;
+            })
+                    .AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AppDbContext>();
             services.AddControllersWithViews();
 
