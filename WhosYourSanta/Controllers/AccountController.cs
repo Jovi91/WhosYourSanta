@@ -61,19 +61,29 @@ namespace WhosYourSanta.Controllers
     {
         if (ModelState.IsValid)
         {
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            var user = await UserManager.FindByEmailAsync(model.Email);
+
+            //check if user exists, email has been confirmed and login and password was entered
+            if (user != null && !user.EmailConfirmed &&
+                                (await UserManager.CheckPasswordAsync(user, model.Password)))
+            {
+                ModelState.AddModelError(string.Empty, "Email nie został potwierdzony");
+                return View(model);
+            }
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password,
+                                    model.RememberMe, true);
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Main", "Home");
+                //here i can add returnUrl
+                return RedirectToAction("Main", "home");                   
             }
-
-            ModelState.AddModelError(string.Empty, "Invalid Model Attempt");
+            
+            ModelState.AddModelError(string.Empty, "Niepoprawna próba logowania");
         }
 
         return View(model);
-
-
     }
 
 

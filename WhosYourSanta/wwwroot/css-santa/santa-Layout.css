@@ -115,3 +115,15 @@ html {
     overflow-x: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+#infoContainer {
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    #infoContainer {
+    }
+
+}
