@@ -17,12 +17,12 @@ namespace WhosYourSanta.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> Logger;
-        public UserManager<IdentityUser> UserManager { get; }
+        public UserManager<AppUser> UserManager { get; }
         public ILotteryRepository LotteryRepository { get; }
 
-        public SignInManager<IdentityUser> SignInManager { get; }
+        public SignInManager<AppUser> SignInManager { get; }
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository, SignInManager<IdentityUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, ILotteryRepository lotteryRepository, SignInManager<AppUser> signInManager)
         {
             Logger = logger;
             UserManager = userManager;
@@ -67,12 +67,13 @@ namespace WhosYourSanta.Controllers
                     var userExists = await UserManager.FindByEmailAsync(santa.Email);
                     if(userExists!=null)
                     {
+                        //to nigdzie nie przekierowuje ze względu na ajax
                         ViewBag.InfoTitle = "Użytkownik już istnieje";
                         ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
                         return View("Info");
                     }
 
-                    var userFromSanta = new IdentityUser { UserName = santa.Email, Email = santa.Email };
+                    var userFromSanta = new AppUser { UserName = santa.Email, Email = santa.Email };
                     var result = await UserManager.CreateAsync(userFromSanta, "Zoba_h1");
 
                     
@@ -88,21 +89,6 @@ namespace WhosYourSanta.Controllers
                     
                 }
 
-                //List<RegisterViewModel> modelList = new List<RegisterViewModel>();
-                //foreach (var santa in lottery.Santas)
-                //{
-                //    var model = new RegisterViewModel()
-                //    {
-
-                //        Email = santa.Email,
-                //        Password = "Test_h1",
-                //        ConfirmePassword = "Test_h1"
-                //    };
-
-                //    modelList.Add(model);
-
-                    
-                //}
                 return RedirectToAction("Info", "Account");
                    // return RedirectToAction("Register", "Account", new { modelList = modelList, islotteryMember = true });
             }

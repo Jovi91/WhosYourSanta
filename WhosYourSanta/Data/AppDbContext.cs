@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WhosYourSanta.Models
 {
-    public class AppDbContext: IdentityDbContext
+    public class AppDbContext: IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             :base(options)
@@ -18,7 +18,7 @@ namespace WhosYourSanta.Models
         public virtual DbSet<Santa> Santas { get; set; }
 
         public virtual DbSet<Lottery> Lottery { get; set; }
-        public DbSet<IdentityUser> Users { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

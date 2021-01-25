@@ -12,7 +12,7 @@ namespace WhosYourSanta.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
             ILogger<AccountController> logger)
         {
             UserManager = userManager;
@@ -20,8 +20,8 @@ namespace WhosYourSanta.Controllers
             Logger = logger;
         }
 
-        public UserManager<IdentityUser> UserManager { get; }
-        public SignInManager<IdentityUser> SignInManager { get; }
+        public UserManager<AppUser> UserManager { get; }
+        public SignInManager<AppUser> SignInManager { get; }
         public ILogger<AccountController> Logger { get; }
 
         [HttpGet]
@@ -114,7 +114,7 @@ namespace WhosYourSanta.Controllers
                 if(ModelState.IsValid)
                 {
 
-                    var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                    var user = new AppUser { UserName = model.Email, Email = model.Email };
 
                     var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -172,7 +172,7 @@ namespace WhosYourSanta.Controllers
             if (result.Succeeded)
             {
                 ViewBag.InfoTitle = "Email został potwierdzony";
-                ViewBag.InfoContent = "Dziękuę za potwierdzenie adresu Email. Zapraszam do logowania.";
+                ViewBag.InfoContent = "Email " + user.Email +  " został potwierdzony. Zapraszam do logowania.";
                 return View("Info");
             }
 
