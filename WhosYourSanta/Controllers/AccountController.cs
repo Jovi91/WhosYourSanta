@@ -30,6 +30,11 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
+        public IActionResult Info()
+        {
+            ViewBag.InfoTitle = "To jest test";
+            return View("Info");
+        }
 
         //[HttpPost]
         //public IActionResult LoginTest()
@@ -56,7 +61,7 @@ namespace WhosYourSanta.Controllers
 
         //}
 
-    [HttpPost]
+        [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (ModelState.IsValid)
@@ -78,6 +83,7 @@ namespace WhosYourSanta.Controllers
             {
                 //here i can add returnUrl
                 return RedirectToAction("Main", "home");                   
+
             }
             
             ModelState.AddModelError(string.Empty, "Niepoprawna próba logowania");
@@ -104,34 +110,41 @@ namespace WhosYourSanta.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if(ModelState.IsValid)
-            {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
 
-                if(result.Succeeded)
+                if(ModelState.IsValid)
                 {
-                    var token = await UserManager.GenerateEmailConfirmationTokenAsync(user);
 
-                    var confirmationLink = Url.Action("ConfirmEmail", "Account",
-                                            new { userId = user.Id, token = token }, Request.Scheme);
+                    var user = new IdentityUser { UserName = model.Email, Email = model.Email };
 
-                    Logger.Log(LogLevel.Warning, confirmationLink);
+                    var result = await UserManager.CreateAsync(user, model.Password);
 
-                    ViewBag.InfoTitle = "Dziękuje za rejestrację";
-                    ViewBag.InfoContent = "Na podany adres email został wysłany link. Kliknij w go aby potwierdzić założenie konta.";
-                    return View("Info");
-                    //await SignInManager.SignInAsync(user, isPersistent:false);
-                    //return RedirectToAction("Index", "Home");
+                    if (result.Succeeded)
+                    {
+                        var token = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                                                new { userId = user.Id, token = token }, Request.Scheme);
+
+                        Logger.Log(LogLevel.Warning, confirmationLink);
+
+
+                        ViewBag.InfoTitle = "Dziękuje za rejestrację";
+                        ViewBag.InfoContent = "Na podany adres email został wysłany link. Kliknij w go aby potwierdzić założenie konta.";
+                        return View("Info");
+                        
+
+                        //await SignInManager.SignInAsync(user, isPersistent:false);
+                        //return RedirectToAction("Index", "Home");
+                    }
+
+                    foreach(var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
 
-                foreach(var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-            }
-
-            return View(model);
+            
+            
+           return View(model);
         }
 
         [HttpGet]

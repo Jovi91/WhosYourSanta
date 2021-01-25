@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 using WhosYourSanta.Models;
 using WhosYourSanta.ViewModel;
 
@@ -15,7 +16,7 @@ namespace WhosYourSanta.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> Logger;
         public UserManager<IdentityUser> UserManager { get; }
         public ILotteryRepository LotteryRepository { get; }
 
@@ -23,7 +24,7 @@ namespace WhosYourSanta.Controllers
 
         public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository, SignInManager<IdentityUser> signInManager)
         {
-            _logger = logger;
+            Logger = logger;
             UserManager = userManager;
             LotteryRepository = lotteryRepository;
             SignInManager = signInManager;
@@ -61,8 +62,54 @@ namespace WhosYourSanta.Controllers
                 var user = await UserManager.GetUserAsync(User);
                 var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
                 LotteryRepository.Add(lottery);
+                foreach (var santa in lottery.Santas)
+                {   
+                    var userExists = await UserManager.FindByEmailAsync(santa.Email);
+                    if(userExists!=null)
+                    {
+                        ViewBag.InfoTitle = "Użytkownik już istnieje";
+                        ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
+                        return View("Info");
+                    }
+
+                    var userFromSanta = new IdentityUser { UserName = santa.Email, Email = santa.Email };
+                    var result = await UserManager.CreateAsync(userFromSanta, "Zoba_h1");
+
+                    
+                    if (result.Succeeded)
+                    {
+                        var token = await UserManager.GenerateEmailConfirmationTokenAsync(userFromSanta);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                                            new { userId = userFromSanta.Id, token = token }, Request.Scheme);
+                    
+                        Logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, confirmationLink);
+                    }
+                        
+                    
+                }
+
+                //List<RegisterViewModel> modelList = new List<RegisterViewModel>();
+                //foreach (var santa in lottery.Santas)
+                //{
+                //    var model = new RegisterViewModel()
+                //    {
+
+                //        Email = santa.Email,
+                //        Password = "Test_h1",
+                //        ConfirmePassword = "Test_h1"
+                //    };
+
+                //    modelList.Add(model);
+
+                    
+                //}
+                return RedirectToAction("Info", "Account");
+                   // return RedirectToAction("Register", "Account", new { modelList = modelList, islotteryMember = true });
             }
-            return RedirectToAction("Index");
+
+                return RedirectToAction("Index");
+            
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

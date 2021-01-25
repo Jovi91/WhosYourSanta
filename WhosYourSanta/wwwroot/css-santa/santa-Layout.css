@@ -116,7 +116,9 @@ html {
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
-#infoContainer {
+#infoContainer
+
+{
     margin: auto;
     background-color: rgba(255, 255, 255, 0.4);
     padding: 10px;
