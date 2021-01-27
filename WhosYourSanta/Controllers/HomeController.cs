@@ -45,7 +45,7 @@ namespace WhosYourSanta.Controllers
         {
             var userId = UserManager.GetUserId(User);
 
-            return View(LotteryRepository.GetLotteries(userId));
+            return View(LotteryRepository.GetUserLotteries(userId));
         }
 
         [HttpGet]
@@ -68,9 +68,10 @@ namespace WhosYourSanta.Controllers
                     if(userExists!=null)
                     {
                         //to nigdzie nie przekierowuje ze względu na ajax
-                        ViewBag.InfoTitle = "Użytkownik już istnieje";
-                        ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
-                        return View("Info");
+                        continue;
+                        //ViewBag.InfoTitle = "Użytkownik już istnieje";
+                        //ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
+                        //return View("Info");
                     }
 
                     var userFromSanta = new AppUser { UserName = santa.Email, Email = santa.Email };

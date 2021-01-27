@@ -11,6 +11,12 @@
     <Compile Remove="Migrations\20201229110512_AddingLottery.Designer.cs" />
     <Compile Remove="Migrations\20210105222649_RemoveEagerLoadingConnectedMigrations.cs" />
     <Compile Remove="Migrations\20210105222649_RemoveEagerLoadingConnectedMigrations.Designer.cs" />
+    <Compile Remove="Migrations\20210126125221_sp_FindLotteriesByUserEmail.cs" />
+    <Compile Remove="Migrations\20210126125221_sp_FindLotteriesByUserEmail.Designer.cs" />
+    <Compile Remove="Migrations\20210126130925_sp_FindLotteriesByUserEmail.cs" />
+    <Compile Remove="Migrations\20210126130925_sp_FindLotteriesByUserEmail.Designer.cs" />
+    <Compile Remove="Migrations\20210127111048_addLotteryNavigationPropertyToSantaModel.cs" />
+    <Compile Remove="Migrations\20210127111048_addLotteryNavigationPropertyToSantaModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -75,7 +75,7 @@ namespace WhosYourSanta.Models
  
 
 
-        public List<Lottery> GetLotteries(string idUser)
+        public List<Lottery> GetUserLotteries(string idUser)
         {
             var user = Context.Users.Find(idUser);
 
