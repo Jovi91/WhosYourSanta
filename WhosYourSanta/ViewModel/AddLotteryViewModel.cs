@@ -16,7 +16,7 @@ namespace WhosYourSanta.ViewModel
         [Required]
         [MinLength(2),MaxLength(30)]
         public string Name { get; set; }
-        public IdentityUser Admin { get; set; }
+        public AppUser Admin { get; set; }
         public List<Santa> Santas { get; set; } = new List<Santa>();
 
         public Santa Santa { get; set; }

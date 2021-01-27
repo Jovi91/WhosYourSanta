@@ -16,10 +16,34 @@ namespace WhosYourSanta.Models
         {
             Context = context;
         }
-        public List<Lottery> GetLotteries(string idUser)
+
+        public Dictionary<Santa,Lottery> GetSantaLotteryKeyValuePairs()
+        {
+            Dictionary<Santa, Lottery> LotterySantaPairs = new Dictionary<Santa, Lottery>();
+
+            foreach (var lottery in Context.Lottery.Include("Santas"))
+            {
+                foreach (var santa in lottery.Santas)
+                {
+                    LotterySantaPairs.Add(santa, lottery);
+                }
+
+            }
+            return LotterySantaPairs;
+        }
+        public List<Lottery> GetUserLotteries(string idUser)
         {
             var user = Context.Users.Find(idUser);
-            return Context.Lottery.Where(i => i.Admin == user).ToList();
+
+            List<Lottery> lotteries = new List<Lottery>();
+            Dictionary<Santa, Lottery> dict = GetSantaLotteryKeyValuePairs();
+            List<Lottery> memberLottery = dict.Where(kvp => user.Email == kvp.Key.Email).Select(kvp => kvp.Value).ToList();
+            List<Lottery> adminLottery = Context.Lottery.Where(l => l.Admin == user).ToList();
+            List<Lottery> allMyLotteries =  memberLottery.Union(adminLottery).ToList();
+            //
+            //(item => item.Value.position.Equals(newPosition)).Select(item => item.Key);
+
+            return allMyLotteries;
         }
 
         public Lottery Add(Lottery lottery)

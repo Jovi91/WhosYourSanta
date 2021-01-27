@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 using WhosYourSanta.Models;
 using WhosYourSanta.ViewModel;
 
 namespace WhosYourSanta.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        public UserManager<IdentityUser> UserManager { get; }
+        private readonly ILogger<HomeController> Logger;
+        public UserManager<AppUser> UserManager { get; }
         public ILotteryRepository LotteryRepository { get; }
 
-        public SignInManager<IdentityUser> SignInManager { get; }
+        public SignInManager<AppUser> SignInManager { get; }
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> userManager, ILotteryRepository lotteryRepository, SignInManager<IdentityUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, ILotteryRepository lotteryRepository, SignInManager<AppUser> signInManager)
         {
-            _logger = logger;
+            Logger = logger;
             UserManager = userManager;
             LotteryRepository = lotteryRepository;
             SignInManager = signInManager;
@@ -29,7 +32,7 @@ namespace WhosYourSanta.Controllers
 
 
 
-        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             if (SignInManager.IsSignedIn(User))
@@ -42,7 +45,7 @@ namespace WhosYourSanta.Controllers
         {
             var userId = UserManager.GetUserId(User);
 
-            return View(LotteryRepository.GetLotteries(userId));
+            return View(LotteryRepository.GetUserLotteries(userId));
         }
 
         [HttpGet]
@@ -51,7 +54,7 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
         {
             if (ModelState.IsValid)
@@ -59,8 +62,41 @@ namespace WhosYourSanta.Controllers
                 var user = await UserManager.GetUserAsync(User);
                 var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas=lotteryData.Santas };
                 LotteryRepository.Add(lottery);
+                foreach (var santa in lottery.Santas)
+                {   
+                    var userExists = await UserManager.FindByEmailAsync(santa.Email);
+                    if(userExists!=null)
+                    {
+                        //to nigdzie nie przekierowuje ze względu na ajax
+                        continue;
+                        //ViewBag.InfoTitle = "Użytkownik już istnieje";
+                        //ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
+                        //return View("Info");
+                    }
+
+                    var userFromSanta = new AppUser { UserName = santa.Email, Email = santa.Email };
+                    var result = await UserManager.CreateAsync(userFromSanta, "Zoba_h1");
+
+                    
+                    if (result.Succeeded)
+                    {
+                        var token = await UserManager.GenerateEmailConfirmationTokenAsync(userFromSanta);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                                            new { userId = userFromSanta.Id, token = token }, Request.Scheme);
+                    
+                        Logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, confirmationLink);
+                    }
+                        
+                    
+                }
+
+                return RedirectToAction("Info", "Account");
+                   // return RedirectToAction("Register", "Account", new { modelList = modelList, islotteryMember = true });
             }
-            return RedirectToAction("Index");
+
+                return RedirectToAction("Index");
+            
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

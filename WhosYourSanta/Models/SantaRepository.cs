@@ -70,5 +70,10 @@ namespace WhosYourSanta.Models
             var DrawnSanta = Santa.DrawnSanta;
             return DrawnSanta;
         }
+
+        public List<Santa> GetSantasWithEmail(string email)
+        {
+            return GetAllSantas().Where(s => s.Email == email).ToList();
+        }
     }
 }

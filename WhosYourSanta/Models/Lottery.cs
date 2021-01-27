@@ -17,7 +17,7 @@ namespace WhosYourSanta.Models
         public int Id { get; protected set; }
         [Required]
         public string Name { get; set; }
-        public IdentityUser Admin { get; set; }
+        public AppUser Admin { get; set; }
         public virtual ICollection<Santa> Santas { get; set; }
 
 

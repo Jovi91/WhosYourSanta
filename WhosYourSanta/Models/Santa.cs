@@ -20,6 +20,6 @@ namespace WhosYourSanta.Models
         public Santa DrawnSanta { get; set; }
 
         //navigation property
-        //public virtual Lottery Lottery { get; set; } //na razie nie potrzebna jeżeli będzie potrzebna (np do Lazy Loading) to trzeba zrobić migrację
+        public virtual Lottery Lottery { get; set; } //na razie nie potrzebna jeżeli będzie potrzebna (np do Lazy Loading) to trzeba zrobić migrację
     }
 }
