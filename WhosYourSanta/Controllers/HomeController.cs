@@ -109,6 +109,7 @@ namespace WhosYourSanta.Controllers
         public IActionResult LotteryDetails(int id)
         {
             Lottery lottery = LotteryRepository.GetLottery(id);
+
             List <String> lista = LotteryRepository.GetAllSantasFromAllLotteries();
             return View(lottery);
         }

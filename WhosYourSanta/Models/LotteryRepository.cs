@@ -70,7 +70,7 @@ namespace WhosYourSanta.Models
         public Lottery GetLottery(int id)
         {
             //Lottery lottery = Context.Lottery.Find(id);
-            Lottery lottery = Context.Lottery.Include("Santas").Where(i => i.Id == id).FirstOrDefault();
+            Lottery lottery = Context.Lottery.Include("Santas").Include("Admin").Where(i => i.Id == id).FirstOrDefault();
             return lottery;
         }
 
