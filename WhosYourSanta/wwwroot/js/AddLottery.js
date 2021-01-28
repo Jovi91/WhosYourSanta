@@ -35,11 +35,13 @@ function FillDataWithAdminEmail(email) {
     //var Email = '@User.Identity.Name';
     if (document.getElementById("takePart-checkbox").checked) {
         document.getElementById("SantaEmail").value = userEmial;
+        document.getElementById("SantaEmail").disabled = true;
         document.getElementById("field-validation-error").textContent = "";
         document.getElementById("SantaName").value = userEmial.substring(0, userEmial.indexOf('@'));
     }
     else {
         document.getElementById("SantaEmail").value = "";
+        document.getElementById("SantaEmail").disabled = false;
         document.getElementById("SantaName").value = "";
 
         //Remove Admin from santas List and Array
@@ -158,6 +160,7 @@ function AddSantaToTheList() {
 
     document.getElementById("SantaName").value = "";
     document.getElementById("SantaEmail").value = "";
+    document.getElementById("SantaEmail").disabled = false;
 
 
     //create delete santa span

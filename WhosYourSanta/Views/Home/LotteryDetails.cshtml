@@ -58,6 +58,10 @@
                 }
             </table>
         </div>
+        @if(@Model.Admin.Email != @User.Identity.Name)
+        {
+            <p style="margin-bottom:1px;">Skontaktuj się z administratorem loterii: @Model.Admin.Email </p>
+        }
     </div>
 </div>
 

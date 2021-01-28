@@ -21,7 +21,7 @@ namespace WhosYourSanta.Models
         {
             Dictionary<Santa, Lottery> LotterySantaPairs = new Dictionary<Santa, Lottery>();
 
-            foreach (var lottery in Context.Lottery.Include("Santas"))
+            foreach (var lottery in Context.Lottery.Include("Santas").Include("Admin"))
             {
                 foreach (var santa in lottery.Santas)
                 {
