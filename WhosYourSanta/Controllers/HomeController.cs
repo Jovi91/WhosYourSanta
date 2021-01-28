@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NLog;
+using PasswordGenerator;
 using WhosYourSanta.Models;
-using WhosYourSanta.ViewModel;
+
 
 namespace WhosYourSanta.Controllers
 {
@@ -75,7 +75,10 @@ namespace WhosYourSanta.Controllers
                     }
 
                     var userFromSanta = new AppUser { UserName = santa.Email, Email = santa.Email };
-                    var result = await UserManager.CreateAsync(userFromSanta, "Zoba_h1");
+                    // NuGet: PasswordGenerator by Paul Seal
+                    var pwd = new Password().IncludeLowercase().IncludeUppercase().IncludeSpecial().IncludeNumeric().LengthRequired(10);
+                    var password = pwd.Next();
+                    var result = await UserManager.CreateAsync(userFromSanta, password);
 
                     
                     if (result.Succeeded)
@@ -84,7 +87,7 @@ namespace WhosYourSanta.Controllers
                         var confirmationLink = Url.Action("ConfirmEmail", "Account",
                                             new { userId = userFromSanta.Id, token = token }, Request.Scheme);
                     
-                        Logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, confirmationLink);
+                        Logger.Log(Microsoft.Extensions.Logging.LogLevel.Warning, userFromSanta.Email + " ||| "+ password + " ||| "  + confirmationLink);
                     }
                         
                     
