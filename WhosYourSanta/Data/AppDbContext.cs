@@ -18,7 +18,7 @@ namespace WhosYourSanta.Models
         public virtual DbSet<Santa> Santas { get; set; }
 
         public virtual DbSet<Lottery> Lottery { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+       // public DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

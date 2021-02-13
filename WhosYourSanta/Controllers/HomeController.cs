@@ -64,17 +64,25 @@ namespace WhosYourSanta.Controllers
                 LotteryRepository.Add(lottery);
                 foreach (var santa in lottery.Santas)
                 {   
+                    santa.Lottery = lottery;
                     var userExists = await UserManager.FindByEmailAsync(santa.Email);
                     if(userExists!=null)
                     {
+                        santa.AppUser = userExists;
+                        userExists.Santas.Add(santa);
                         //to nigdzie nie przekierowuje ze względu na ajax
                         continue;
+                        
                         //ViewBag.InfoTitle = "Użytkownik już istnieje";
                         //ViewBag.InfoContent = "Szukany użytkownik istnieje już w bazie.";
                         //return View("Info");
                     }
 
                     var userFromSanta = new AppUser { UserName = santa.Email, Email = santa.Email };
+                    //navigation
+                    userFromSanta.Santas.Add(santa);
+                    santa.AppUser = userFromSanta;
+
                     // NuGet: PasswordGenerator by Paul Seal
                     var pwd = new Password().IncludeLowercase().IncludeUppercase().IncludeSpecial().IncludeNumeric().LengthRequired(10);
                     var password = pwd.Next();
