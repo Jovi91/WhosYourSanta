@@ -63,6 +63,24 @@ namespace WhosYourSanta.Models
             return santaChanges;
         }
 
+        public List<Santa> GetSantasBy(string idUser)
+        {
+            return Context.Santas.Where(s => s.AppUser.Id == idUser).ToList(); 
+        }
+        public List<Lottery> GetAppUserLottery(string idUser)
+        {
+            List<Santa> userSantas = Context.Santas.Include(s => s.Lottery.Admin).Where(s => s.AppUser.Id == idUser).ToList();
+            //var user = Context.Users.Include(u=>u.Santas).Where(u => u.Id == idUser).FirstOrDefault();
+            //List<Santa> userSantas = Context.Santas.Include(s=>s.Lottery.Admin).Where(s => s.AppUser == user).ToList();
+            List<Lottery> usersLotteries =  userSantas.Select(s => s.Lottery).ToList();
+            return usersLotteries;
+        }
+
+        public AppUser GetAppUserByEmail(string Email)
+        {
+            return Context.Users.Include(u => u.Santas).Where(u => u.Email == Email).FirstOrDefault();
+        }
+        
         public Santa GetDrawnSanta(int santaWhoDrawsId)
         {
             var Santa = Context.Santas.Include("DrawnSanta").Where(i => i.Id == santaWhoDrawsId).FirstOrDefault();
@@ -75,5 +93,12 @@ namespace WhosYourSanta.Models
         {
             return GetAllSantas().Where(s => s.Email == email).ToList();
         }
+
+        //public bool UpdateSantasData(Santa santa)
+        //{
+        //    Context.Update(santa);
+        //    Context.SaveChanges();
+        //    return true;
+        //}
     }
 }

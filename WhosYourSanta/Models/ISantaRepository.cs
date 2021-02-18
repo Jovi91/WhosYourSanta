@@ -10,10 +10,13 @@ namespace WhosYourSanta.Models
         IEnumerable<Santa> GetSantasFromLottery(int idLottery);
         Santa GetSanta(int Id);
         IEnumerable<Santa> GetAllSantas();
+        List<Santa> GetSantasBy(string idUser);
         Santa Add(Santa santa);
         Santa Update(Santa santaChanges);
         Santa Delete(int Id);
-
+        List<Lottery> GetAppUserLottery(string idUser);
+        AppUser GetAppUserByEmail(string Email);
         Santa GetDrawnSanta(int santaWhoDrawsId);
+       // bool UpdateSantasData(Santa santa);
     }
 }

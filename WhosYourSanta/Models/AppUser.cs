@@ -13,7 +13,7 @@ namespace WhosYourSanta.Models
         {
             this.Santas = new HashSet<Santa>();
         }
-        public virtual ICollection<Santa> Santas { get; set; }
+        public ICollection<Santa> Santas { get; set; }
 
     }
 }
