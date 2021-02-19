@@ -100,7 +100,7 @@ namespace WhosYourSanta.Models
         public List<Lottery> GetAllUsersLotteries(string AppUserId)
         {
             List<Santa> userSantas = Context.Santas.Include(s => s.Lottery.Admin).Where(s => s.AppUser.Id == AppUserId).ToList();
-            return userSantas.Select(s => s.Lottery).ToList();
+            return userSantas.Select(s => s.Lottery).Where(l=>l.Visibility==true).ToList();
         }
 
         public AppUser GetAppUserByEmail(string Email)

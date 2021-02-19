@@ -69,13 +69,17 @@ namespace WhosYourSanta.Models
         {
            lottery =  Context.Lottery.Include("Santas").Where(i => i.Id == lottery.Id).FirstOrDefault();
 
-            foreach(Santa santa in lottery.Santas)
-            {
-                Context.Santas.Remove(santa);
-            }
+            //foreach(Santa santa in lottery.Santas)
+            //{
+            //    Context.Santas.Remove(santa);
+            //}
+            //Context.SaveChanges();
+            //Context.Lottery.Remove(lottery);
+            //Context.SaveChanges();
+
+            lottery.Visibility = false;
             Context.SaveChanges();
-            Context.Lottery.Remove(lottery);
-            Context.SaveChanges();
+
             return lottery;
 
         }
