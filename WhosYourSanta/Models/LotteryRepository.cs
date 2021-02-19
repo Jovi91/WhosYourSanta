@@ -19,51 +19,45 @@ namespace WhosYourSanta.Models
             SantaRepository = santaRepository;
         }
 
-        public Dictionary<Santa,Lottery> GetSantaLotteryKeyValuePairs()
-        {
-            Dictionary<Santa, Lottery> LotterySantaPairs = new Dictionary<Santa, Lottery>();
+        //public Dictionary<Santa,Lottery> GetSantaLotteryKeyValuePairs()
+        //{
+        //    Dictionary<Santa, Lottery> LotterySantaPairs = new Dictionary<Santa, Lottery>();
 
-            foreach (var lottery in Context.Lottery.Include("Santas").Include("Admin"))
-            {
-                foreach (var santa in lottery.Santas)
-                {
-                    LotterySantaPairs.Add(santa, lottery);
-                }
+        //    foreach (var lottery in Context.Lottery.Include("Santas").Include("Admin"))
+        //    {
+        //        foreach (var santa in lottery.Santas)
+        //        {
+        //            LotterySantaPairs.Add(santa, lottery);
+        //        }
 
-            }
-            return LotterySantaPairs;
-        }
+        //    }
+        //    return LotterySantaPairs;
+        //}
 
         //public List<Lottery> GetUserLotteries(string idUser)
         //{
-        //   //return Context.Lottery.Where(l=>l.Santas.SelectMany(SantaRepository.GetSantasBy(idUser)));
+        //    // var user = Context.Users.Include("Santas").Where(u => u.Id == idUser).FirstOrDefault().Include("Lottery");
+        //    var user = Context.Users.Find(idUser);
+        //    //List<Lottery> lotteries = new List<Lottery>();
+
+        //    //foreach (var santa in user.Santas)
+        //    //{
+        //    //    lotteries.Add(santa.Lottery);
+        //    //}
+        //    //return null;       
+        //    //lotteries = user.Santas.Select((s) => s.Lottery).ToList();
+
+
+
+        //    Dictionary<Santa, Lottery> dict = GetSantaLotteryKeyValuePairs();
+        //    List<Lottery> memberLottery = dict.Where(kvp => user.Email == kvp.Key.Email).Select(kvp => kvp.Value).ToList();
+        //    List<Lottery> adminLottery = Context.Lottery.Where(l => l.Admin == user).ToList();
+        //    List<Lottery> allMyLotteries = memberLottery.Union(adminLottery).ToList();
+        //    //
+        //    //(item => item.Value.position.Equals(newPosition)).Select(item => item.Key);
+
+        //    return allMyLotteries;
         //}
-        public List<Lottery> GetUserLotteries(string idUser)
-        {
-            // var user = Context.Users.Include("Santas").Where(u => u.Id == idUser).FirstOrDefault().Include("Lottery");
-            var user = Context.Users.Find(idUser);
-            //List<Lottery> lotteries = new List<Lottery>();
-
-            //foreach (var santa in user.Santas)
-            //{
-            //    lotteries.Add(santa.Lottery);
-            //}
-            //return null;       
-            //lotteries = user.Santas.Select((s) => s.Lottery).ToList();
-
-
-
-            Dictionary<Santa, Lottery> dict = GetSantaLotteryKeyValuePairs();
-            List<Lottery> memberLottery = dict.Where(kvp => user.Email == kvp.Key.Email).Select(kvp => kvp.Value).ToList();
-            List<Lottery> adminLottery = Context.Lottery.Where(l => l.Admin == user).ToList();
-            List<Lottery> allMyLotteries = memberLottery.Union(adminLottery).ToList();
-            //
-            //(item => item.Value.position.Equals(newPosition)).Select(item => item.Key);
-
-            return allMyLotteries;
-
-
-        }
 
         public Lottery Add(Lottery lottery)
         {
@@ -79,16 +73,17 @@ namespace WhosYourSanta.Models
             {
                 Context.Santas.Remove(santa);
             }
+            Context.SaveChanges();
             Context.Lottery.Remove(lottery);
             Context.SaveChanges();
             return lottery;
 
         }
 
-        public Lottery GetLottery(int id)
+        public Lottery GetLottery(int LotteryId)
         {
             //Lottery lottery = Context.Lottery.Find(id);
-            Lottery lottery = Context.Lottery.Include("Santas").Include("Admin").Where(i => i.Id == id).FirstOrDefault();
+            Lottery lottery = Context.Lottery.Include("Santas").Include("Admin").Where(i => i.Id == LotteryId).FirstOrDefault();
             return lottery;
         }
 
@@ -114,6 +109,11 @@ namespace WhosYourSanta.Models
             //bool lotteryStarted = santas.Where(s => s.DrawnSanta != null).Any();
             bool lotteryStarted = santas.Where(s => s.DrawnSanta != null).Any();
             return lotteryStarted;
+        }
+
+        public List<Santa> GetAllSantas(Lottery lottery)
+        {
+            throw new NotImplementedException();
         }
     }
 }

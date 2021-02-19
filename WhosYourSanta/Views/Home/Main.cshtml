@@ -43,28 +43,28 @@
                     var numberOfLotteriesOnPage = Model.Count() > 3 ? 3 : Model.Count();
                     var imgSize = numberOfLotteriesOnPage == 1 ? "max-width:40%" : "height:70%";
                     //(lottery.PhotoPath ?? "noimage.jpg");
-                <div id="lotteryId" class="lottery btn bg_slider" style="height:calc(99%/@numberOfLotteriesOnPage)">
+                    <div id="lotteryId" class="lottery btn bg_slider" style="height:calc(99%/@numberOfLotteriesOnPage)">
                    
-                    <div class="lottery-element lottery-centered  lottery-title">
-                        <div id="lottery-title" class="font-christmas">@lottery.Name</div>
+                        <div class="lottery-element lottery-centered  lottery-title">
+                            <div id="lottery-title" class="font-christmas">@lottery.Name</div>
+                        </div>
+
+                        <img src="@photoPath" class="lottery-element rounded-circle img-lottery-position img-lottery-size lottery-centered " style=@imgSize alt="Cinque Terre" />
+
+                        @*</div>*@
+
+                        <a type="button" asp-route-LotteryId="@lottery.Id" asp-action="DrawSanta" asp-controller="Home" class="lottery-element lottery-half-size lottery-position-left text-black-onhover font-christmas">
+                            @if(@lottery.Admin.Email == @User.Identity.Name)
+                            {
+                                <img data-toggle="tooltip" title="Jesteś adminem @lottery.Name" data-placement="top" src="~/img/admin01.png" style="position:absolute;bottom:5%;left:2%; height:20px; width:20px; z-index:15;"/>
+                            }
+                            <p class="text-v-center text-position-draw">Wylosuj</p>
+                            @*style="top:calc((@topPosition/10)*100%);right:50%; transform:translateY(calc((@topPosition/10)*-100%));"*@
+                        </a>
+                        <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery-element lottery-half-size text-white-onhover font-christmas" style="right:0;">
+                            <p class="text-v-center text-position-details">Szczegóły</p>
+                        </a>
                     </div>
-
-                    <img src="@photoPath" class="lottery-element rounded-circle img-lottery-position img-lottery-size lottery-centered " style=@imgSize alt="Cinque Terre" />
-
-                    @*</div>*@
-
-                    <a type="button" asp-route-id="@lottery.Id" asp-action="PageInProgress" asp-controller="Administration" class="lottery-element lottery-half-size lottery-position-left text-black-onhover font-christmas">
-                        @if(@lottery.Admin.Email == @User.Identity.Name)
-                        {
-                            <img data-toggle="tooltip" title="Jesteś adminem @lottery.Name" data-placement="top" src="~/img/admin01.png" style="position:absolute;bottom:5%;left:2%; height:20px; width:20px; z-index:15;"/>
-                        }
-                        <p class="text-v-center text-position-draw">Wylosuj</p>
-                        @*style="top:calc((@topPosition/10)*100%);right:50%; transform:translateY(calc((@topPosition/10)*-100%));"*@
-                    </a>
-                    <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery-element lottery-half-size text-white-onhover font-christmas" style="right:0;">
-                        <p class="text-v-center text-position-details">Szczegóły</p>
-                    </a>
-                </div>
 
                 }
 
