@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<WhosYourSanta.Models.Lottery>
-
+@inject ISantaRepository santaRepo
+@inject UserManager<AppUser> userManager
 
 <!DOCTYPE html>
 
@@ -53,18 +54,27 @@
 
                         @*</div>*@
 
-                        <a type="button" asp-route-LotteryId="@lottery.Id" asp-action="DrawSanta" asp-controller="Home" class="lottery-element lottery-half-size lottery-position-left text-black-onhover font-christmas">
-                            @if(@lottery.Admin.Email == @User.Identity.Name)
+                    @*<a type="button" asp-route-LotteryId="@lottery.Id" asp-action="DrawSanta" asp-controller="Home" class="lottery-element lottery-half-size lottery-position-left text-black-onhover font-christmas">*@
+                        <div class="lottery-element lottery-half-size lottery-position-left font-christmas">
+                            @if (@lottery.Admin.Email == @User.Identity.Name)
                             {
-                                <img data-toggle="tooltip" title="Jesteś adminem @lottery.Name" data-placement="top" src="~/img/admin01.png" style="position:absolute;bottom:5%;left:2%; height:20px; width:20px; z-index:15;"/>
+                                <img data-toggle="tooltip" title="Jesteś adminem @lottery.Name" data-placement="top" src="~/img/admin01.png" style="position:absolute;bottom:5%;left:2%; height:20px; width:20px; z-index:15;" />
                             }
-                            <p class="text-v-center text-position-draw">Wylosuj</p>
-                            @*style="top:calc((@topPosition/10)*100%);right:50%; transform:translateY(calc((@topPosition/10)*-100%));"*@
-                        </a>
-                        <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery-element lottery-half-size text-white-onhover font-christmas" style="right:0;">
-                            <p class="text-v-center text-position-details">Szczegóły</p>
-                        </a>
-                    </div>
+                            
+                            @*if user takes part in lottery show "Losuj" button*@
+                            @if(santaRepo.GetSantaBy(userManager.GetUserId(User),lottery.Id)!=null)
+                            {
+                                <a type="button" asp-route-LotteryId="@lottery.Id" asp-action="DrawSanta" asp-controller="Home" class="text-black-onhover w-100 h-100" >
+                                    <p class="text-v-center text-position-draw">Wylosuj</p>
+                                </a>
+                            }
+
+                                    @*style="top:calc((@topPosition/10)*100%);right:50%; transform:translateY(calc((@topPosition/10)*-100%));"*@
+                        </div>
+                                <a type="button" asp-route-id="@lottery.Id" asp-action="LotteryDetails" asp-controller="Home" class="lottery-element lottery-half-size text-white-onhover font-christmas" style="right:0;">
+                                    <p class="text-v-center text-position-details">Szczegóły</p>
+                                </a>
+</div>
 
                 }
 

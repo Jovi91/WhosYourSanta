@@ -18,5 +18,6 @@ namespace WhosYourSanta.Models
 
         public bool ChcekIfLotteryHasStarted(int id);
         List<Santa> GetAllSantas(Lottery lottery);
+        List<Lottery> GetAllAdminsLotteries(string adminId);
     }
 }

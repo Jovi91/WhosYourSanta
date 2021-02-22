@@ -8,11 +8,13 @@ namespace WhosYourSanta.Models
 {
     public class SantaRepository : ISantaRepository
     {
-        public AppDbContext Context { get; }        
+        public AppDbContext Context { get; }
+        //public ILotteryRepository LotteryRepository { get; }
 
         public SantaRepository(AppDbContext context)
         {
             Context = context;
+            //LotteryRepository = lotteryRepository;
         }
 
 
@@ -100,7 +102,9 @@ namespace WhosYourSanta.Models
         public List<Lottery> GetAllUsersLotteries(string AppUserId)
         {
             List<Santa> userSantas = Context.Santas.Include(s => s.Lottery.Admin).Where(s => s.AppUser.Id == AppUserId).ToList();
-            return userSantas.Select(s => s.Lottery).Where(l=>l.Visibility==true).ToList();
+            var LottriesWhereIAmAdmin = Context.Lottery.Where(l => l.Admin.Id == AppUserId).ToList();
+            var LotteriesWhereITakePart = userSantas.Select(s => s.Lottery).ToList();
+            return LottriesWhereIAmAdmin.Union(LotteriesWhereITakePart).Where(l => l.Visibility == true).ToList();
         }
 
         public AppUser GetAppUserByEmail(string Email)

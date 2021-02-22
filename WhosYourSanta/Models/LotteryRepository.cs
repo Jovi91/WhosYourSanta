@@ -115,6 +115,11 @@ namespace WhosYourSanta.Models
             return lotteryStarted;
         }
 
+        public List<Lottery> GetAllAdminsLotteries(string adminId)
+        {
+            return Context.Lottery.Where(l => l.Admin.Id == adminId).ToList();
+        }
+
         public List<Santa> GetAllSantas(Lottery lottery)
         {
             throw new NotImplementedException();
