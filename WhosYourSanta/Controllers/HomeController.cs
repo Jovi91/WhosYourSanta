@@ -135,35 +135,23 @@ namespace WhosYourSanta.Controllers
         [HttpGet]
         public IActionResult DrawSanta(int LotteryId)
         {
-            // Lottery lottery = LotteryRepository.GetLottery(LotteryId);
             Santa mySanta = SantaRepository.GetSantaBy(UserManager.GetUserId(User),LotteryId);
-            if (mySanta.DrawnSanta==null)
-            {
-                List<Santa> santas = SantaRepository.GetAllSantas(LotteryId);
-                return View(santas);
-            }
+            if (mySanta.DrawnSanta != null)
+                ViewBag.DrawnSantaName = mySanta.DrawnSanta.Name;
 
-            return RedirectToAction("DrawnSanta", "Home", new { LotteryId = LotteryId});
-
+            List<Santa> santas = SantaRepository.GetAllSantas(LotteryId);
+            return View(santas);
         }
 
       
-        public IActionResult DrawnSanta(int LotteryId)
+        public IActionResult Draw(int LotteryId)
         {
-            Santa santa;
             Santa mySanta = SantaRepository.GetSantaBy(UserManager.GetUserId(User), LotteryId);
 
             if (mySanta.DrawnSanta == null)
-                santa = SantaRepository.DrawSantaForUser(UserManager.GetUserId(User), LotteryId);
-            else
-                santa = mySanta.DrawnSanta;
+               SantaRepository.DrawSantaForUser(UserManager.GetUserId(User), LotteryId);
 
-
-
-            //var name = SantaList.Select(s => s.Name).FirstOrDefault();
-            //Santa santa = SantaList.Where(s => s.Name == name).FirstOrDefault();
-
-            return View(santa);
+            return RedirectToAction("DrawSanta", "Home", new { LotteryId = LotteryId });
         }
     }
 }
