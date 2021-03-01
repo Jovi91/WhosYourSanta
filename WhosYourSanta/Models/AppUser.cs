@@ -8,5 +8,12 @@ namespace WhosYourSanta.Models
 {
     public class AppUser:IdentityUser, IUser
     {
+        //public string City { get; set; }
+        public AppUser()
+        {
+            this.Santas = new HashSet<Santa>();
+        }
+        public ICollection<Santa> Santas { get; set; }
+
     }
 }

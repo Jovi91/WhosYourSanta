@@ -108,5 +108,15 @@ namespace WhosYourSanta.Models
         {
             throw new NotImplementedException();
         }
+
+        public List<Santa> GetAllSantas(Lottery lottery)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Lottery> GetAllAdminsLotteries(string adminId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

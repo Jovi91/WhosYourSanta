@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WhosYourSanta.Models.Santa>
+
+@{
+    ViewData["Title"] = "DrawSanta";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var DrawnSantaName = ViewBag.DrawnSantaName;
+
+}
+
+    <canvas id="canvas"></canvas>
+
+    @if (DrawnSantaName == null)
+    {
+        <form asp-action="Draw" asp-controller="Home" asp- asp-route-LotteryID="@Model.FirstOrDefault().Lottery.Id" method="post">
+            <input type="submit" class="btn btn-primary absolut-center" style="font-size:50px; padding:5px 30px" value="Losuj!" />
+        </form>
+    }
+
+
+<script type="text/javascript">
+        @{
+            string[] nicks = Model.Select(m => m.Name).ToArray();
+
+        }
+        var nicksTable = @Html.Raw(Json.Serialize(@nicks));
+        var drawnSanta= '@DrawnSantaName';
+         //var nicksTable = ["baba", "ma", "koze", "na", "scianie", "lalal", "bum", "siaka", "laka"];
+</script>
+<script src="~/js/DrawSanta.js"></script>
