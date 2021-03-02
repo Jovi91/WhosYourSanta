@@ -10,7 +10,9 @@ using NLog;
 using PasswordGenerator;
 using WhosYourSanta.Models;
 using System.Linq;
-
+using WhosYourSanta.ViewModel;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WhosYourSanta.Controllers
 {
@@ -23,14 +25,21 @@ namespace WhosYourSanta.Controllers
 
         public SignInManager<AppUser> SignInManager { get; }
         public ISantaRepository SantaRepository { get; }
+        public IWebHostEnvironment HostingEnvironment { get; }
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, ILotteryRepository lotteryRepository, SignInManager<AppUser> signInManager, ISantaRepository santaRepository)
+        public HomeController(ILogger<HomeController> logger,
+                              UserManager<AppUser> userManager, 
+                              ILotteryRepository lotteryRepository, 
+                              SignInManager<AppUser> signInManager, 
+                              ISantaRepository santaRepository,
+                              IWebHostEnvironment hostingEnvironment)
         {
             Logger = logger;
             UserManager = userManager;
             LotteryRepository = lotteryRepository;
             SignInManager = signInManager;
             SantaRepository = santaRepository;
+            HostingEnvironment = hostingEnvironment;
         }
 
 
@@ -59,14 +68,32 @@ namespace WhosYourSanta.Controllers
             return View();
         }
 
+
+
+        //public IActionResult AddPhotoPath(AddLotteryViewModel model)
+        //{
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> AddLottery([FromBody]Lottery lotteryData)
+        //[FromBody] Lottery
+        public async Task<IActionResult> AddLottery([FromBody] AddLotteryViewModel lotteryData)
         {
             if (ModelState.IsValid)
             {
+
+
                 var user = await UserManager.GetUserAsync(User);
+
+
                 //lotteryData.Admin = user;
-                var lottery = new Lottery() { Admin = user, Name = lotteryData.Name, Santas = lotteryData.Santas };
+                var lottery = new Lottery() 
+                { 
+                    Admin = user, 
+                    Name = lotteryData.Name, 
+                    Santas = lotteryData.Santas,
+                    //PhotoPath =lotteryData.Photo.FileName
+                };
                 LotteryRepository.Add(lottery);
 
                 foreach (var santa in lottery.Santas)

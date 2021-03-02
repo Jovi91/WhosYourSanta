@@ -211,11 +211,13 @@ function draw() {
 	};
 	requestAnimationFrame(draw);
 }
-var start_keys = Array.from(Array(nicksTable.length).keys());
-//var start_keys = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80];
+var start_keys=[];
+for (i = 0; i < nicksTable.length; i++) {
+	start_keys.push(i);
+}
+//nicksTable.forEach(number => start_keys.push(number));
+//var start_keys = Array.from(Array(nicksTable.length).keys());
 var count=15;
-//if (drawnName ="")
-//	count = 15;//animation play times
 
 function startAnimation() {
 	setTimeout(function () {
@@ -236,8 +238,10 @@ draw();
 var myInterval = setInterval(function () {
 
 	if (start_keys.length <= 0 && count >= 0) {
-		start_keys = Array.from(Array(nicksTable.length).keys());
-		//start_keys = [83, 87, 69, 82, 84, 89, 85, 73, 79, 80];//words to show
+		for (i = 0; i < nicksTable.length; i++) {
+			start_keys.push(i);
+		}
+		//start_keys = Array.from(Array(nicksTable.length).keys());//words to show
 		startAnimation();
 
 		count--;

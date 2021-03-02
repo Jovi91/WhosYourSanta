@@ -14,7 +14,7 @@
 
     <div class="half" id="lotteryFormHalf">
 
-        <form method="post" id="addLotteryForm" class="form" asp-action="AddLottery">
+        <form enctype="multipart/form-data" method="post" id="addLotteryForm" class="form" asp-controller="Home" asp-action="AddLottery">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="main-form">
                 <div class="lottery-dataSection">
@@ -25,45 +25,50 @@
                         </label>
                     </div>
                     <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>
+                    <div class="custom-file">
+                        <input asp-for="Photo"  id="PhotoInputxx" class="form-control custom-file-input"/>
+                        <label class="custom-file-label">Wybieraj</label>
+                    </div>
+                        @*<input asp-for="Name" autocomplete="off" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
+            <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>*@
 
-                    @*<input asp-for="Name" autocomplete="off" id="lotteryName" class="form-control addLottery-form-control" placeholder="Lottery Name" />
-                        <span asp-validation-for="Name" id="lotteryNameErrorMsg" class="text-danger"></span>*@
+
+                        <div class="lottery-checkbox">
+                            <label asp-for="AdminTakesPartInLottery">
+                                <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />
+                                @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
+                            </label>
+                        </div>
+
+                        @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
+                <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
+            </div>*@
 
 
-                    <div class="lottery-checkbox">
-                        <label asp-for="AdminTakesPartInLottery">
-                            <input id="takePart-checkbox" asp-for="AdminTakesPartInLottery" onchange="FillDataWithAdminEmail('@user')" />
-                            @Html.DisplayNameFor(m => m.AdminTakesPartInLottery)
-                        </label>
                     </div>
 
-                    @*<div id="AdminAsSanta" class="AdminAsSanta" style="background-color:darkgoldenrod; display: none">
-                            <input class="form-control addLottery-form-control" placeholder="Nick or Name" />
-                        </div>*@
+
+                    <div class="lottery-dataSection">
+                        <p class="lbl-addSanta">Dodaj mikołajów do loterii</p>
+                        <div style="position:relative">
+                            <input asp-for="Santa.Name" autocomplete="off" id="SantaName" class="form-addSanta form-control" placeholder="Imię lub Nick" />
+                            <span asp-validation-for="Santa.Name" class="text-danger"></span>
+                            <input asp-for="Santa.Email" autocomplete="off" id="SantaEmail" class="form-addSanta form-control" placeholder="Email" />
+                            <span asp-validation-for="Santa.Email" id="field-validation-error" class="text-danger"></span>
 
 
+                        </div>
+
+                        <div class="form-group btn-addSanta">
+                            <input type="button" value="Dodaj" class="btn btn-primary" onclick="AddSantaToTheList()" />
+                        </div>
+                    </div>
                 </div>
-
-
-                <div class="lottery-dataSection">
-                    <p class ="lbl-addSanta">Dodaj mikołajów do loterii</p>
-                    <div style="position:relative">
-                        <input asp-for="Santa.Name" autocomplete="off" id="SantaName" class="form-addSanta form-control" placeholder="Imię lub Nick" />
-                        <span asp-validation-for="Santa.Name" class="text-danger"></span>
-                        <input asp-for="Santa.Email" autocomplete="off" id="SantaEmail" class="form-addSanta form-control" placeholder="Email" />
-                        <span asp-validation-for="Santa.Email" id="field-validation-error" class="text-danger"></span>
-
-
-                    </div>
-
-                    <div class="form-group btn-addSanta">
-                        <input type="button" value="Dodaj" class="btn btn-primary" onclick="AddSantaToTheList()" />
-                    </div>
-                </div>
-            </div>
+            @*<button type="submit" id="submitLotteryBtn" class="btn btn-primary">Create</button>*@
             <div class="form-group">
                 @* onclick="CreateObjectFromArray()"*@
                 @*<input type="button" id="submitLotteryBtn" value="Create" class="btn btn-primary" onclick="CreateObjectFromArray()" />*@
+                
                 <input type="button" id="submitLotteryBtn" value="Stwórz Loterię" class="btn btn-primary" />
             </div>
         </form>

@@ -251,7 +251,8 @@ $('#submitLotteryBtn').click(function (e) {
     var lotteryName = $('#lotteryNameInput').val();
     var lotteryData = {
         Name: lotteryName,
-        Santas: santasArray
+        Santas: santasArray,
+        PhotoPath: 'test'
     }
     var data = JSON.stringify(lotteryData);  
 

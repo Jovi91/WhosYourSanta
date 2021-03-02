@@ -20,6 +20,7 @@ namespace WhosYourSanta.Models
         public AppUser Admin { get; set; }
         public virtual ICollection<Santa> Santas { get; set; }
         public bool Visibility { get; set; } = true;
+        public string PhotoPath { get; set; }
 
     }
 }

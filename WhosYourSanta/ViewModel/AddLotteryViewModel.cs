@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,7 @@ namespace WhosYourSanta.ViewModel
 
         [Display(Name="Chcę wziąć udział w loterii")]
         public bool AdminTakesPartInLottery { get; set; }
+        public IFormFile Photo { get; set; }
 
 
         
