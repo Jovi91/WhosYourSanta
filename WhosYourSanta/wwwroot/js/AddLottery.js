@@ -243,8 +243,8 @@ $('#submitLotteryBtn').click(function (e) {
     }
 
     //Do zmiany na 4444444444444444444444444444444444444444444444444444444444444444444444444444444
-    if (santasArray.length < 1) {
-        alert("Loteria musi zawierać co najmniej czterech mikołajów.")
+    if (santasArray.length < 2) {
+        alert("Loteria musi zawierać co najmniej dwóch mikołajów.")
         return;
     }
 
